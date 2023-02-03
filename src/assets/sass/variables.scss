@@ -1,7 +1,7 @@
 /*    current theme   */
 /* Backgrounds */
 $c-bg-main: var(--c-bg-main);
-$c-bg-todo: var (--c-bg-todo);
+$c-bg-todo: var(--c-bg-todo);
 
 /* Text */
 $c-text-uncompleted: var(--c-text-uncompleted);
@@ -42,6 +42,12 @@ $rd-mobile: 768px;
 @mixin flexCenter {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+@mixin flexSpaceBtwn {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 

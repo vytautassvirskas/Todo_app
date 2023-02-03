@@ -1,0 +1,14 @@
+@import "../../assets/sass/variables.scss";
+
+.dashBoard {
+  @include flexSpaceBtwn;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: $fw-bold;
+  color: $c-text-uncompleted;
+  letter-spacing: 0.875rem;
+  word-spacing: -0.875rem;
+}

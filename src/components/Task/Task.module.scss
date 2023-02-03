@@ -1,0 +1,16 @@
+@import "../../assets/sass/variables.scss";
+
+.task-wrapper {
+  @include flexCenter;
+  justify-content: flex-start;
+  background-color: $c-bg-todo;
+  padding: 20px;
+}
+
+.checkbox-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid $c-brdr-check;
+  margin-right: 20px;
+}
