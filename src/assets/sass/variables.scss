@@ -1,16 +1,25 @@
-/*      COLORS      */
-$c-cyan: hsl(180, 29%, 50%);
-$c-lightCyan: hsl(180, 52%, 96%);
-$c-darkCyan: hsl(180, 8%, 52%);
-$c-veryDarkCyan: hsl(180, 14%, 20%);
-$c-white: hsl(0, 0%, 100%);
-$c-green: hsl(124, 9%, 67%);
-$c-darGreen: hsl(103, 18%, 30%);
-$c-brown: hsl(31, 20%, 70%);
-$c-yellow: hsl(40, 66%, 82%);
+/*    current theme   */
+/* Backgrounds */
+$c-bg-main: var(--c-bg-main);
+$c-bg-todo: var (--c-bg-todo);
+
+/* Text */
+$c-text-uncompleted: var(--c-text-uncompleted);
+$c-text-completed: var(--c-text-completed);
+$c-text-button: var(--c-text-button);
+$c-text-button-hover: var(--c-text-button-hover);
+
+/*check*/
+$c-brdr-check: var(--c-brdr-check);
+
+/*background image*/
+$bg-image-desktop: var(--bg-image-desktop);
+$bg-image-mobile: var(--bg-image-mobile);
+
+/*----------------------------*/
 
 /*text colors for both themes*/
-$c-text-all:hsl(220, 98%, 61%);
+$c-text-all: hsl(220, 98%, 61%);
 
 /*check background color for both themes*/
 $c-bg-check: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
@@ -35,6 +44,5 @@ $rd-mobile: 768px;
   justify-content: center;
   align-items: center;
 }
-
 
 /*animations*/
