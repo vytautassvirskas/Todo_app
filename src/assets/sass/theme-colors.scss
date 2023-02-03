@@ -1,0 +1,39 @@
+/*Dark theme*/
+#dark {
+  /* Backgrounds */
+  --c-bg-main: hsl(235, 21%, 11%);
+  --c-bg-todo: hsl(235, 24%, 19%);
+
+  /* Text */
+  --c-text-uncompleted: hsl(236, 33%, 92%);
+  --c-text-completed: hsl(234, 11%, 52%);
+  --c-text-button: hsl(233, 14%, 35%);
+  --c-text-button-hover: hsl(236, 33%, 92%);
+
+  /*check*/
+  --c-brdr-check: hsl(237, 14%, 26%);
+
+  /*background image*/
+  --bg-image-desktop: url("../images/bg-desktop-dark.jpg");
+  --bg-image-mobile: url("../images/bg-mobile-dark.jpg");
+}
+
+/* Light theme */
+#light {
+  /* Backgrounds */
+  --c-bg-main: hsl(233, 11%, 84%);
+  --c-bg-todo: hsl(0, 0%, 98%);
+
+  /* Text */
+  --c-text-uncompleted: hsl(235, 19%, 35%);
+  --c-text-completed: hsl(233, 11%, 84%);
+  --c-text-button: hsl(236, 9%, 61%);
+  --c-text-button-hover: hsl(235, 19%, 35%);
+
+  /*check*/
+  --c-brdr-check: hsl(233, 11%, 84%);
+
+  /*background image*/
+  --bg-image-desktop: url("../images/bg-desktop-light.jpg");
+  --bg-image-mobile: url("../images/bg-mobile-light.jpg");
+}

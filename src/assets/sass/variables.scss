@@ -1,0 +1,40 @@
+/*      COLORS      */
+$c-cyan: hsl(180, 29%, 50%);
+$c-lightCyan: hsl(180, 52%, 96%);
+$c-darkCyan: hsl(180, 8%, 52%);
+$c-veryDarkCyan: hsl(180, 14%, 20%);
+$c-white: hsl(0, 0%, 100%);
+$c-green: hsl(124, 9%, 67%);
+$c-darGreen: hsl(103, 18%, 30%);
+$c-brown: hsl(31, 20%, 70%);
+$c-yellow: hsl(40, 66%, 82%);
+
+/*text colors for both themes*/
+$c-text-all:hsl(220, 98%, 61%);
+
+/*check background color for both themes*/
+$c-bg-check: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+/*    FONTS    */
+/*font family*/
+$ff-primary: "Josefin Sans", sans-serif;
+
+/*font-size*/
+$fs-primary: 1.125rem;
+
+/*font weight*/
+$fw-regular: 400;
+$fw-bold: 700;
+
+/* responsive */
+$rd-mobile: 768px;
+
+/*    mixin   */
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/*animations*/
