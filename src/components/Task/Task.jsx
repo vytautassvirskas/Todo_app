@@ -9,7 +9,7 @@ const Task = ({ task }) => {
       <div className={style["checkbox-circle"]}></div>
       <div className={style["input-wrapper"]}>
         <label htmlFor="task-text"></label>
-        <input id="task-text" type="text" value={task.task} />
+        <input id="task-text" type="text" placeholder={task.task} />
       </div>
     </div>
   );

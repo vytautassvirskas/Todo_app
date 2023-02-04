@@ -3,6 +3,7 @@ import ToDoWrapper from "./components/ToDoWrapper/ToDoWrapper.jsx";
 import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import style from "./App.module.scss";
 import Task from "./components/Task/Task.jsx";
+import NewTaskWrapper from "./components/NewTaskWrapper/NewTaskWrapper.jsx";
 import TasksWrapper from "./components/TasksWrapper/TasksWrapper.jsx";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <main className={style.main} id={theme}>
       <ToDoWrapper>
         <DashBoard title={"to do"} theme={theme}></DashBoard>
+        <NewTaskWrapper></NewTaskWrapper>
         <TasksWrapper tasks={tasks}></TasksWrapper>
       </ToDoWrapper>
     </main>

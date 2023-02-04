@@ -1,13 +1,17 @@
 @import "../../assets/sass/variables.scss";
 
-/* reiketu apjungti su newTASK*/
-.task-wrapper {
+.new-task-wrapper {
   @include flexCenter;
   justify-content: flex-start;
   background-color: $c-bg-todo;
-  padding: 20px;
+  padding: 1.25rem;
+  margin: 2.5rem 0 1.5625rem;
+
+  border-radius: 0.3125rem;
 }
-/* reiketu apjungti su newTASK*/
+.input-wrapper--hidden {
+  display: none;
+}
 
 .checkbox-circle {
   width: 25px;
@@ -15,4 +19,10 @@
   border-radius: 50%;
   border: 1px solid $c-brdr-check;
   margin-right: 20px;
+}
+
+.input {
+  background-color: transparent;
+  outline: transparent;
+  border: none;
 }
