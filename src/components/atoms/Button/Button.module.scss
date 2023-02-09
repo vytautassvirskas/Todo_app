@@ -2,10 +2,21 @@
 .btn {
   background-color: transparent;
   border: none;
+  font-size: 0.875rem;
+  font-weight: $fw-bold;
   color: $c-text-button;
   cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: $c-text-button-hover;
+  }
   &--blue {
     @extend .btn;
     color: $c-text-primary;
+  }
+  &--regular {
+    @extend .btn;
+    font-weight: $fw-regular;
   }
 }

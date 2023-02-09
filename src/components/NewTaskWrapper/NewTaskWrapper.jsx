@@ -9,7 +9,7 @@ const NewTaskWrapper = (props) => {
   const [newTask, setNewTask] = useState({
     id: uuidv4(),
     taskName: "",
-    isCompleted: "false",
+    isCompleted: false,
     category: "",
   });
 
@@ -41,7 +41,7 @@ const NewTaskWrapper = (props) => {
     setNewTask({
       id: uuidv4(),
       taskName: "",
-      isCompleted: "false",
+      isCompleted: false,
       category: "",
     });
   };

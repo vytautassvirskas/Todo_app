@@ -14,7 +14,12 @@ function App() {
   const [tasks, setTasks] = useState(
     () => JSON.parse(localStorage.getItem("tasks")) || []
   );
+  const [filteredTasks, setFilteredTasks] = useState()
   const categories = ["Personal", "Work"];
+
+  // useEffect(() => {
+  //   let dataCopy = [...tasks];
+  // }, [tasks]);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -29,7 +34,7 @@ function App() {
           categories={categories}
         ></NewTaskWrapper>
         <TasksWrapper tasks={tasks} setTasks={setTasks}>
-          <BottomDashBoard></BottomDashBoard>
+          <BottomDashBoard tasks={tasks} setTasks={setTasks}></BottomDashBoard>
         </TasksWrapper>
       </ToDoWrapper>
     </main>

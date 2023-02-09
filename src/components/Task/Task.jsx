@@ -32,9 +32,6 @@ const Task = ({ task, handleDeleteTask }) => {
       <Button onClick={() => handleDeleteTask(task.id)}>
         <Delete className={style.delete}></Delete>
       </Button>
-      <Button onClick={() => handleDeleteTask(task.id)}>
-        <span>clear all</span>
-      </Button>
     </li>
   );
 };

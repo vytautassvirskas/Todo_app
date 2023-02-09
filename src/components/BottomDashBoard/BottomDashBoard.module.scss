@@ -3,4 +3,9 @@
 .dashboard {
   @include flexSpaceBtwn;
   margin-top: auto;
+  padding: 25px;
+}
+.amount {
+  color: $c-text-completed;
+  font-size: 14px;
 }
