@@ -3,9 +3,6 @@
 .main {
   @include flexCenter;
   min-height: 100vh;
-  background-color: $c-bg-main;
-  background-image: $bg-image-desktop;
-  background-repeat: no-repeat;
-  background-position: top;
+  background: $c-bg-main $bg-image-desktop no-repeat top;
   background-size: contain;
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./NewTaskWrapper.module.scss";
+import checkImg from "../../assets/images/icon-check.svg";
+import dropdownArrow from "../../assets/images/dropdown-svgrepo-com.svg";
 
 const NewTaskWrapper = () => {
   const [newTask, setNewTask] = useState({
@@ -8,44 +10,37 @@ const NewTaskWrapper = () => {
     category: "",
   });
   const [tasks, setTasks] = useState([]);
-  const [isNameTyped, setIsNameTyped] = useState(false);
-
+  const isDisabled = newTask.taskName ? false : true;
   const handleChange = (e) => {
-    setNewTask((prevNewTask) => {
-      return { ...newTask, [e.target.name]: e.target.value };
-    });
+    setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
   const categories = ["Personal", "Work"];
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      setIsNameTyped(true);
-    }
-  };
-
   const handleSelectCategory = (e) => {
-    console.log("e.target.name: ", e.target.name);
-    console.log("e.target.value: ", e.target.value);
-    // setNewTask((prevNewTask) => {
-    //   const updatedNewTask = {
-    //     ...prevNewTask,
-    //     [e.target.name]: e.target.value,
-    //   };
-    //   setTasks((prevTasks) => [updatedNewTask, ...prevTasks]);
+    console.log("handleSelectCategory ~ e", e);
+    console.log("handleSelectCategory ~ e", e.target.value);
 
-    //   return updatedNewTask;
-    // });
     setNewTask((prevNewTask) => {
       return { ...prevNewTask, [e.target.name]: e.target.value };
     });
-    setTasks((prevTasks, preNewTask) => [newTask, ...prevTasks]);
-    setIsNameTyped(false);
+  };
 
-    // setNewTask({
-    //   taskName: "",
-    //   isCompleted: "false",
-    //   category: "",
-    // });
+  // for drobdown made by me
+  // const handleSelectCategory = (e) => {
+  //   console.log("innerHTML:", e.target.innerHTML);
+  //   console.dir(e.target);
+  //   setNewTask((prevNewTask) => {
+  //     return { ...prevNewTask, category: e.target.innerHTML };
+  //   });
+  // };
+
+  const handleAddNewTask = () => {
+    setTasks([newTask, ...tasks]);
+    setNewTask({
+      taskName: "",
+      isCompleted: "false",
+      category: "",
+    });
   };
 
   useEffect(() => {
@@ -57,48 +52,65 @@ const NewTaskWrapper = () => {
   }, [tasks]);
 
   return (
-    <div className={style["new-task-wrapper"]}>
-      <div className={style["checkbox-circle"]}></div>
-      <div
-        className={
-          isNameTyped ? style["input-wrapper--hidden"] : style["input-wrapper"]
-        }
-      >
-        <label htmlFor="task-text"></label>
-        <input
-          className={style.input}
-          id="task-text"
-          type="text"
-          name="taskName"
-          placeholder="Create new todo"
-          value={newTask.taskName}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
-      </div>
-      {isNameTyped && (
-        <>
-          <select
-            className="filter-select"
-            defaultValue="default"
-            name="category"
-            onChange={handleSelectCategory}
-          >
-            <option value="default" disabled>
-              Category
+    <>
+      <div className={style["new-task-wrapper"]}>
+        <div className={style["checkbox-circle"]}></div>
+        <div className={style["input-wrapper"]}>
+          <label htmlFor="task-text"></label>
+          <input
+            id="task-text"
+            type="text"
+            name="taskName"
+            placeholder="Create a new todo..."
+            value={newTask.taskName}
+            onChange={handleChange}
+          />
+        </div>
+        <select
+          disabled={isDisabled}
+          defaultValue="default"
+          value={!newTask.category && "default"}
+          name="category"
+          onChange={handleSelectCategory}
+        >
+          <option value="default" disabled>
+            Category
+          </option>
+          {categories.map((category) => (
+            <option value={category} key={category}>
+              {category}
             </option>
-            {categories.map((category) => (
-              <option value={category} key={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <button type="button" onClick={() => setIsNameTyped(false)}>
-            back
+          ))}
+        </select>
+        {/* dropdown made by me */}
+        {/* <div className={style.dropdown}>
+          <button className={style["dropdown-btn"]}>
+            Category
+            <img src={dropdownArrow} alt="dropdown-arrow" />
           </button>
-        </>
-      )}
-    </div>
+          <div className={style["dropdown-content"]}>
+            {categories.map((category) => (
+              <span
+                key={category}
+                className={style.category}
+                onClick={handleSelectCategory}
+              >
+                {category}
+              </span>
+            ))}
+          </div>
+        </div> */}
+        <button
+          disabled={isDisabled}
+          type="button"
+          onClick={handleAddNewTask}
+          className={style["add-button"]}
+        >
+          Add task
+          {/* <img src={checkImg} alt="add-task" /> */}
+        </button>
+      </div>
+    </>
   );
 };
 

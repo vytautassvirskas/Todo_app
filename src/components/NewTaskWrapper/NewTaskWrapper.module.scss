@@ -9,9 +9,6 @@
 
   border-radius: 0.3125rem;
 }
-.input-wrapper--hidden {
-  display: none;
-}
 
 .checkbox-circle {
   width: 25px;
@@ -21,8 +18,42 @@
   margin-right: 20px;
 }
 
-.input {
+input[name="taskName"] {
   background-color: transparent;
   outline: transparent;
   border: none;
+  color: $c-text-uncompleted;
 }
+input[name="taskName"]::placeholder {
+  font-family: $ff-primary;
+  color: $c-text-inactive;
+}
+
+// .dropdown {
+//   position: relative;
+//   &:hover .dropdown-content {
+//     display: block;
+//   }
+// }
+// .dropdown-btn {
+//   background-color: transparent;
+//   color: $c-text-inactive;
+//   // font-size: 16px;
+//   border: none;
+//   cursor: pointer;
+//   &:hover {
+//     color: $c-text-uncompleted;
+//   }
+// }
+// .dropdown-content {
+//   display: none;
+//   position: absolute;
+//   background-color: tomato;
+//   color: $c-text-uncompleted;
+// }
+
+// .category {
+//   display: block;
+//   padding: 5px;
+//   cursor: pointer;
+// }

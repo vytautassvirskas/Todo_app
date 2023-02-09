@@ -1,11 +1,9 @@
 @import "./reset.scss";
 @import "./theme-colors.scss";
 @import "./variables.scss";
-@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
 #root {
-  font-family: $ff-primary;
-  font-size: $fs-primary;
-  font-weight: $fw-regular;
   min-height: 100vh;
+  font: $fw-regular $fs-primary $ff-primary;
 }
