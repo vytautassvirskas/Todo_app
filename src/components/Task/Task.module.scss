@@ -5,7 +5,8 @@
   @include flexCenter;
   justify-content: flex-start;
   background-color: $c-bg-todo;
-  padding: 20px;
+  padding: 1.25rem;
+  border-radius: 0.3125rem;
 }
 /* reiketu apjungti su newTASK*/
 
@@ -15,4 +16,19 @@
   border-radius: 50%;
   border: 1px solid $c-brdr-check;
   margin-right: 20px;
+}
+input[name="taskName"] {
+  background-color: transparent;
+  outline: transparent;
+  border: none;
+  color: $c-text-uncompleted;
+}
+input[name="taskName"]::placeholder {
+  font-family: $ff-primary;
+  color: $c-text-inactive;
+}
+
+.delete {
+  color: tomato;
+  fill: tomato;
 }

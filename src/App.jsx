@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToDoWrapper from "./components/ToDoWrapper/ToDoWrapper.jsx";
-import DashBoard from "./components/DashBoard/DashBoard.jsx";
+import TopDashBoard from "./components/TopDashBoard/TopDashBoard.jsx";
 import style from "./App.module.scss";
 import Task from "./components/Task/Task.jsx";
 import NewTaskWrapper from "./components/NewTaskWrapper/NewTaskWrapper.jsx";
 import TasksWrapper from "./components/TasksWrapper/TasksWrapper.jsx";
+import BottomDashBoard from "./components/BottomDashBoard/BottomDashBoard.jsx";
 
 function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("toDoTheme") || "dark"
   );
-  const [tasks, setTasks] = useState([
-    { task: "go for a walk", isCompleted: false },
-    { task: "go for to gym", isCompleted: false },
-    { task: "read a book", isCompleted: true },
-  ]);
+  const [tasks, setTasks] = useState(
+    () => JSON.parse(localStorage.getItem("tasks")) || []
+  );
+  const categories = ["Personal", "Work"];
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
   return (
     <main className={style.main} id={theme}>
       <ToDoWrapper>
-        <DashBoard title={"to do"} theme={theme}></DashBoard>
-        <NewTaskWrapper></NewTaskWrapper>
-        <TasksWrapper tasks={tasks}></TasksWrapper>
+        <TopDashBoard title={"to do"} theme={theme}></TopDashBoard>
+        <NewTaskWrapper
+          tasks={tasks}
+          setTasks={setTasks}
+          categories={categories}
+        ></NewTaskWrapper>
+        <TasksWrapper tasks={tasks} setTasks={setTasks}>
+          <BottomDashBoard></BottomDashBoard>
+        </TasksWrapper>
       </ToDoWrapper>
     </main>
   );

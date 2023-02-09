@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import style from "./NewTaskWrapper.module.scss";
+import { v4 as uuidv4 } from "uuid";
 import checkImg from "../../assets/images/icon-check.svg";
 import dropdownArrow from "../../assets/images/dropdown-svgrepo-com.svg";
 
-const NewTaskWrapper = () => {
+const NewTaskWrapper = (props) => {
+  const { tasks, setTasks, categories } = props;
   const [newTask, setNewTask] = useState({
+    id: uuidv4(),
     taskName: "",
     isCompleted: "false",
     category: "",
   });
-  const [tasks, setTasks] = useState([]);
+
   const isDisabled = newTask.taskName ? false : true;
   const handleChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
-  const categories = ["Personal", "Work"];
 
   const handleSelectCategory = (e) => {
     console.log("handleSelectCategory ~ e", e);
@@ -37,6 +39,7 @@ const NewTaskWrapper = () => {
   const handleAddNewTask = () => {
     setTasks([newTask, ...tasks]);
     setNewTask({
+      id: uuidv4(),
       taskName: "",
       isCompleted: "false",
       category: "",
@@ -68,7 +71,7 @@ const NewTaskWrapper = () => {
         </div>
         <select
           disabled={isDisabled}
-          defaultValue="default"
+          // defaultValue="default"
           value={!newTask.category && "default"}
           name="category"
           onChange={handleSelectCategory}

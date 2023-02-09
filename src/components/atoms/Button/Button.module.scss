@@ -1,0 +1,11 @@
+@import "../../../assets/sass/variables.scss";
+.btn {
+  background-color: transparent;
+  border: none;
+  color: $c-text-button;
+  cursor: pointer;
+  &--blue {
+    @extend .btn;
+    color: $c-text-primary;
+  }
+}
