@@ -1,0 +1,32 @@
+@import "../../../assets/sass/variables.scss";
+
+.checkbox-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid $c-brdr-check;
+  margin-right: 20px;
+}
+
+.checkbox-circle--active {
+  @extend .checkbox-circle;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: linear-gradient($c-bg-todo 0 0) padding-box,
+      $c-bg-linear border-box;
+    border: 2px solid transparent;
+  }
+}
+.checkbox-circle--checked {
+  @include flexCenter;
+  @extend .checkbox-circle;
+  cursor: pointer;
+  background: $c-bg-linear padding-box, $c-bg-linear border-box;
+  border: 2px solid transparent;
+  &:hover {
+    background: $c-bg-linear padding-box, $c-bg-linear border-box;
+    opacity: 0.85;
+  }
+}

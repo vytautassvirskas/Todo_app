@@ -13,7 +13,7 @@ const BottomDashBoard = ({ tasks, setTasks }) => {
       <span className={style.amount}>{taskAmount} items left</span>
       <div className="">
         <Button
-          btnType={"blue"}
+          btnType="blue"
           style={{ marginRight: "1rem" }}
           onClick={console.log("all")}
         >
@@ -24,7 +24,9 @@ const BottomDashBoard = ({ tasks, setTasks }) => {
         </Button>
         <Button onClick={console.log("completed")}>Completed</Button>
       </div>
-      <Button onClick={handleClearCompleted}>Clear Completed</Button>
+      <Button btnType="regular" onClick={handleClearCompleted}>
+        Clear Completed
+      </Button>
     </div>
   );
 };

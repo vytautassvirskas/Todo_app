@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import style from "./NewTaskWrapper.module.scss";
 import { v4 as uuidv4 } from "uuid";
-import checkImg from "../../assets/images/icon-check.svg";
+import Circle from "../atoms/Circle/Circle.jsx";
+import Button from "../atoms/Button/Button.jsx";
 import dropdownArrow from "../../assets/images/dropdown-svgrepo-com.svg";
 
 const NewTaskWrapper = (props) => {
@@ -57,7 +58,7 @@ const NewTaskWrapper = (props) => {
   return (
     <>
       <div className={style["new-task-wrapper"]}>
-        <div className={style["checkbox-circle"]}></div>
+        <Circle circleType={"unactive"}></Circle>
         <div className={style["input-wrapper"]}>
           <label htmlFor="task-text"></label>
           <input
@@ -103,15 +104,14 @@ const NewTaskWrapper = (props) => {
             ))}
           </div>
         </div> */}
-        <button
+        <Button
+          style={{ marginLeft: "auto" }}
           disabled={isDisabled}
-          type="button"
+          btnType="blue"
           onClick={handleAddNewTask}
-          className={style["add-button"]}
         >
           Add task
-          {/* <img src={checkImg} alt="add-task" /> */}
-        </button>
+        </Button>
       </div>
     </>
   );

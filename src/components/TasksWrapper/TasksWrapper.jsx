@@ -7,8 +7,17 @@ const TasksWrapper = (props) => {
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
-
-  const handleEditTask = (taskId) => {};
+  const handleChangeTask = (task) => {
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return task;
+        } else {
+          return t;
+        }
+      })
+    );
+  };
 
   console.log("tasks: ", tasks);
   return (
@@ -17,9 +26,10 @@ const TasksWrapper = (props) => {
         {tasks.length > 0 ? (
           tasks.map((task) => (
             <Task
-              task={task}
               key={task.id}
+              task={task}
               handleDeleteTask={handleDeleteTask}
+              handleChangeTask={handleChangeTask}
             ></Task>
           ))
         ) : (

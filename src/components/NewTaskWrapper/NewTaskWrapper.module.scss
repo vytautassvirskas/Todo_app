@@ -1,5 +1,6 @@
 @import "../../assets/sass/variables.scss";
 
+//sujungti tu taskwrapper task
 .new-task-wrapper {
   @include flexCenter;
   justify-content: flex-start;
@@ -8,14 +9,6 @@
   margin: 2.5rem 0 1.5625rem;
 
   border-radius: 0.3125rem;
-}
-
-.checkbox-circle {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 1px solid $c-brdr-check;
-  margin-right: 20px;
 }
 
 input[name="taskName"] {

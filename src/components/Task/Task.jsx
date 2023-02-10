@@ -1,17 +1,35 @@
 import React from "react";
 import style from "./Task.module.scss";
-import checkIcon from "../../assets/images/icon-check.svg";
 import Button from "../atoms/Button/Button.jsx";
 import Delete from "../atoms/Delete/Delete.jsx";
+import Check from "../atoms/Check/Check.jsx";
+import Circle from "../atoms/Circle/Circle.jsx";
 
-const Task = ({ task, handleDeleteTask }) => {
+const Task = ({ task, handleDeleteTask, handleChangeTask }) => {
   console.log("task: ", task);
-  const handleChange = (e) => {
-    setNewTask({ ...newTask, [e.target.name]: e.target.value });
-  };
+
+  let checkCircle;
+  if (task.isCompleted) {
+    checkCircle = (
+      <Circle
+        circleType={"checked"}
+        onClick={() => handleChangeTask({ ...task, isCompleted: false })}
+      >
+        <Check></Check>
+      </Circle>
+    );
+  } else {
+    checkCircle = (
+      <Circle
+        circleType={"active"}
+        onClick={() => handleChangeTask({ ...task, isCompleted: true })}
+      ></Circle>
+    );
+  }
+
   return (
     <li key={task.id} className={style["task-wrapper"]}>
-      <div className={style["checkbox-circle"]}></div>
+      {checkCircle}
       <div className={style["input-wrapper"]}>
         <label htmlFor="task-text"></label>
         <input
@@ -19,7 +37,7 @@ const Task = ({ task, handleDeleteTask }) => {
           type="text"
           name="taskName"
           value={task.taskName}
-          onChange={handleChange}
+          onChange={() => console.log("hi")}
         />
       </div>
       <span style={{ marginRight: "20px" }}>{task.category}</span>
@@ -30,7 +48,7 @@ const Task = ({ task, handleDeleteTask }) => {
         Edit
       </button>
       <Button onClick={() => handleDeleteTask(task.id)}>
-        <Delete className={style.delete}></Delete>
+        <Delete></Delete>
       </Button>
     </li>
   );
