@@ -1,0 +1,12 @@
+@import "../../../assets/sass/variables.scss";
+
+input[name="taskName"] {
+    background-color: transparent;
+    outline: transparent;
+    border: none;
+    color: $c-text-uncompleted;
+  }
+  input[name="taskName"]::placeholder {
+    font-family: $ff-primary;
+    color: $c-text-inactive;
+  }

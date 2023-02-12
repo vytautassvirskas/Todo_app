@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import style from "./NewTaskWrapper.module.scss";
 import { v4 as uuidv4 } from "uuid";
+import style from "./NewTaskWrapper.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
 import Button from "../atoms/Button/Button.jsx";
+import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
 import dropdownArrow from "../../assets/images/dropdown-svgrepo-com.svg";
 
 const NewTaskWrapper = (props) => {
@@ -15,6 +16,7 @@ const NewTaskWrapper = (props) => {
   });
 
   const isDisabled = newTask.taskName ? false : true;
+
   const handleChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
@@ -59,17 +61,12 @@ const NewTaskWrapper = (props) => {
     <>
       <div className={style["new-task-wrapper"]}>
         <Circle circleType={"unactive"}></Circle>
-        <div className={style["input-wrapper"]}>
-          <label htmlFor="task-text"></label>
-          <input
-            id="task-text"
-            type="text"
-            name="taskName"
-            placeholder="Create a new todo..."
-            value={newTask.taskName}
-            onChange={handleChange}
-          />
-        </div>
+        <TaskInput
+          inputType="new"
+          task={newTask}
+          onChange={handleChange}
+        ></TaskInput>
+
         <select
           disabled={isDisabled}
           // defaultValue="default"

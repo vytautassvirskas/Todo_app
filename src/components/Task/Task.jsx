@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Task.module.scss";
 import Button from "../atoms/Button/Button.jsx";
-import Delete from "../atoms/Delete/Delete.jsx";
-import Check from "../atoms/Check/Check.jsx";
+import Delete from "../atoms/Icons/Delete/Delete.jsx";
+import Check from "../atoms/Icons/Check/Check.jsx";
 import Circle from "../atoms/Circle/Circle.jsx";
+import Edit from "../atoms/Icons/Edit/Edit.jsx";
+import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
 
 const Task = ({ task, handleDeleteTask, handleChangeTask }) => {
+  const [isEditable, setIsEditable] = useState(false);
   console.log("task: ", task);
 
   let checkCircle;
@@ -26,27 +29,30 @@ const Task = ({ task, handleDeleteTask, handleChangeTask }) => {
       ></Circle>
     );
   }
+  //this repeats on newTaskWrapper.jsx
+  const handleChange = (e) => {
+    setNewTask({ ...newTask, [e.target.name]: e.target.value });
+  };
 
   return (
     <li key={task.id} className={style["task-wrapper"]}>
       {checkCircle}
-      <div className={style["input-wrapper"]}>
-        <label htmlFor="task-text"></label>
-        <input
-          id="task-text"
-          type="text"
-          name="taskName"
-          value={task.taskName}
-          onChange={() => console.log("hi")}
-        />
-      </div>
-      <span style={{ marginRight: "20px" }}>{task.category}</span>
-      <button
-        style={{ cursor: "pointer" }}
-        onClick={() => handleEditTask(task.id)}
+      <TaskInput
+        task={task}
+        onChange={(e) =>
+          handleChangeTask({ ...task, [e.target.name]: e.target.value })
+        }
+      ></TaskInput>
+
+      <span style={{ marginRight: "20px", color: "white" }}>
+        {task.category}
+      </span>
+      <Button
+        style={{ marginRight: "8px" }}
+        onClick={() => console.log("editinam")}
       >
-        Edit
-      </button>
+        <Edit></Edit>
+      </Button>
       <Button onClick={() => handleDeleteTask(task.id)}>
         <Delete></Delete>
       </Button>
