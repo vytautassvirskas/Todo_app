@@ -9,7 +9,6 @@ import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
 
 const Task = ({ task, handleDeleteTask, handleChangeTask }) => {
   const [isEditable, setIsEditable] = useState(false);
-  console.log("task: ", task);
 
   let checkCircle;
   if (task.isCompleted) {

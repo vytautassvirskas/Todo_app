@@ -4,7 +4,7 @@ import Button from "../atoms/Button/Button";
 
 const BottomDashBoard = ({ tasks, setTasks }) => {
   const taskAmount = tasks.length;
-  console.log("BottomDashBoard ~ taskAmount", taskAmount);
+  // console.log("BottomDashBoard ~ taskAmount", taskAmount);
   const handleClearCompleted = () => {
     setTasks(tasks.filter((task) => task.isCompleted === false));
   };
@@ -15,14 +15,17 @@ const BottomDashBoard = ({ tasks, setTasks }) => {
         <Button
           btnType="blue"
           style={{ marginRight: "1rem" }}
-          onClick={console.log("all")}
+          onClick={() => console.log("all")}
         >
           All
         </Button>
-        <Button style={{ marginRight: "1rem" }} onClick={console.log("active")}>
+        <Button
+          style={{ marginRight: "1rem" }}
+          onClick={() => console.log("active")}
+        >
           Active
         </Button>
-        <Button onClick={console.log("completed")}>Completed</Button>
+        <Button onClick={() => console.log("completed")}>Completed</Button>
       </div>
       <Button btnType="regular" onClick={handleClearCompleted}>
         Clear Completed

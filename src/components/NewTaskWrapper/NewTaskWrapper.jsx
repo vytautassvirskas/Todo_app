@@ -22,23 +22,20 @@ const NewTaskWrapper = (props) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
 
-  const handleSelectCategory = (e) => {
-    console.log("handleSelectCategory ~ e", e);
-    console.log("handleSelectCategory ~ e", e.target.value);
-
-    setNewTask((prevNewTask) => {
-      return { ...prevNewTask, [e.target.name]: e.target.value };
-    });
-  };
+  //select onchange function
+  // const handleSelectCategory = (e) => {
+  //   console.log("veikia");
+  //   setNewTask({ ...newTask, [e.target.name]: e.target.value });
+  // };
 
   // for drobdown made by me
-  // const handleSelectCategory = (e) => {
-  //   console.log("innerHTML:", e.target.innerHTML);
-  //   console.dir(e.target);
-  //   setNewTask((prevNewTask) => {
-  //     return { ...prevNewTask, category: e.target.innerHTML };
-  //   });
-  // };
+  const handleSelectCategory2 = (e) => {
+    e.stopPropagation();
+    console.log("veikia");
+    console.log("innerHTML:", e.target.innerHTML);
+    console.dir(e.target);
+    setNewTask({ ...newTask, category: e.target.innerHTML });
+  };
 
   const handleAddNewTask = () => {
     setTasks([newTask, ...tasks]);
@@ -70,8 +67,7 @@ const NewTaskWrapper = (props) => {
 
         {/* <select
           disabled={isDisabled}
-          // defaultValue="default"
-          value={!newTask.category && "default"}
+          value={!newTask.category ? "default" : newTask.category}
           name="category"
           onChange={handleSelectCategory}
         >
@@ -84,25 +80,11 @@ const NewTaskWrapper = (props) => {
             </option>
           ))}
         </select> */}
-        <Dropdown categories={categories}></Dropdown>
-        {/* dropdown made by me */}
-        {/* <div className={style.dropdown}>
-          <button className={style["dropdown-btn"]}>
-            Category
-            <img src={dropdownArrow} alt="dropdown-arrow" />
-          </button>
-          <div className={style["dropdown-content"]}>
-            {categories.map((category) => (
-              <span
-                key={category}
-                className={style.category}
-                onClick={handleSelectCategory}
-              >
-                {category}
-              </span>
-            ))}
-          </div>
-        </div> */}
+        <Dropdown
+          categories={categories}
+          onClick={handleSelectCategory2}
+          task={newTask}
+        ></Dropdown>
         <Button
           style={{ marginLeft: "auto" }}
           disabled={isDisabled}

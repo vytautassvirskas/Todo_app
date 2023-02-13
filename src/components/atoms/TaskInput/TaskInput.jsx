@@ -10,7 +10,7 @@ const TaskInput = ({ inputType, task, onChange }) => {
         type="text"
         name="taskName"
         value={task.taskName}
-        placeholder={inputType === "new" && "Create a new todo..."}
+        placeholder={inputType === "new" ? "Create a new todo..." : ""}
         onChange={onChange}
       />
     </div>
