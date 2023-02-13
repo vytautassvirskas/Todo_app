@@ -4,6 +4,7 @@ import style from "./NewTaskWrapper.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
 import Button from "../atoms/Button/Button.jsx";
 import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
+import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
 import dropdownArrow from "../../assets/images/dropdown-svgrepo-com.svg";
 
 const NewTaskWrapper = (props) => {
@@ -67,7 +68,7 @@ const NewTaskWrapper = (props) => {
           onChange={handleChange}
         ></TaskInput>
 
-        <select
+        {/* <select
           disabled={isDisabled}
           // defaultValue="default"
           value={!newTask.category && "default"}
@@ -82,7 +83,8 @@ const NewTaskWrapper = (props) => {
               {category}
             </option>
           ))}
-        </select>
+        </select> */}
+        <Dropdown categories={categories}></Dropdown>
         {/* dropdown made by me */}
         {/* <div className={style.dropdown}>
           <button className={style["dropdown-btn"]}>

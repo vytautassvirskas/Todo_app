@@ -1,0 +1,12 @@
+@import "../../../../assets/sass/variables.scss";
+
+.arrow {
+  transition: 0.2s ease-in-out;
+  fill: $c-text-inactive;
+
+  &--rotate {
+    @extend .arrow;
+    transform: rotate(180deg);
+    fill: $c-text-uncompleted;
+  }
+}

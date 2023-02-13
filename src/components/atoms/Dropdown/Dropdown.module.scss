@@ -1,0 +1,39 @@
+@import "../../../assets/sass/variables.scss";
+
+.dropdown {
+  position: relative;
+  .btn {
+    @include flexCenter;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: $c-text-inactive;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: $c-text-uncompleted;
+    }
+    &--active {
+      @extend .btn;
+      color: $c-text-uncompleted;
+    }
+  }
+  .dropwdown-content {
+    position: absolute;
+    background-color: $c-text-uncompleted;
+    li {
+      padding: 8px;
+      color: $c-text-completed;
+    }
+    li:first-child {
+      background-color: $c-text-inactive;
+      cursor: default;
+    }
+    li:not(li:first-child) {
+      cursor: pointer;
+      &:hover {
+        background-color: $c-text-completed;
+        color: $c-text-uncompleted;
+      }
+    }
+  }
+}
