@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import style from "./TaskInput.module.scss";
 
-const TaskInput = ({ inputType, task, onChange }) => {
+const TaskInput = ({ forwardRef, inputType, task, onChange }) => {
   return (
     <div className={style["input-wrapper"]}>
       <label htmlFor="task-text"></label>
       <input
+        ref={forwardRef}
         id="task-text"
         type="text"
         name="taskName"
