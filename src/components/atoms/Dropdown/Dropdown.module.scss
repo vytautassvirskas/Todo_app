@@ -15,11 +15,16 @@
     &--active {
       @extend .btn;
       color: $c-text-uncompleted;
+      // color: tomato;
     }
   }
   .dropwdown-content {
     position: absolute;
     background-color: $c-text-uncompleted;
+    border-radius: 0.3125rem;
+    overflow: hidden;
+    animation: apear 0.3s ease-in-out;
+
     li {
       padding: 8px;
       color: $c-text-completed;
@@ -36,5 +41,14 @@
         color: $c-text-uncompleted;
       }
     }
+  }
+}
+
+@keyframes apear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

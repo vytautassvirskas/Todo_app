@@ -31,9 +31,8 @@ const NewTaskWrapper = (props) => {
   // for drobdown made by me
   const handleSelectCategory2 = (e) => {
     e.stopPropagation();
-    console.log("veikia");
-    console.log("innerHTML:", e.target.innerHTML);
-    console.dir(e.target);
+    // console.log("innerHTML:", e.target.innerHTML);
+    // console.dir(e.target);
     setNewTask({ ...newTask, category: e.target.innerHTML });
   };
 

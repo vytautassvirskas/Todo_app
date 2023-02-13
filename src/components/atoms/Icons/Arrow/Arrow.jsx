@@ -1,8 +1,8 @@
 import React from "react";
 import style from "./Arrow.module.scss";
 
-const Arrow = ({ rotate, ...restProps }) => {
-  const arrowClassName = rotate ? style["arrow--rotate"] : style.arrow;
+const Arrow = ({ rotate, active, ...restProps }) => {
+  const arrowClassName = rotate ? style["arrow--rotate"] : active ? style["arrow--active"]  :style.arrow;
   return (
     <svg
       {...restProps}

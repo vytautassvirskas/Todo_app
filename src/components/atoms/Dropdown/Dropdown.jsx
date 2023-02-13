@@ -5,13 +5,11 @@ import Arrow from "../Icons/Arrow/Arrow.jsx";
 const Dropdown = ({ categories, task, onClick }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef();
-  const btnClassName = isDropdownOpen ? style["btn--active"] : style.btn;
-  console.log("task dropdown ateina: ", task);
-  const dropDownTitle = task.category ? task.category : "Category";
 
-  // const domRef = handleClickOutside(() => {
-  //   setIsDropdownOpen(false);
-  // });
+  const btnClassName =
+    isDropdownOpen || task.category ? style["btn--active"] : style.btn;
+  const dropDownTitle = task.category ? task.category : "Category";
+  const isArrowActive = task.category ? true : false;
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -22,37 +20,38 @@ const Dropdown = ({ categories, task, onClick }) => {
     setIsDropdownOpen(false);
   };
 
-  const handleCloseDropdown = (e) => {};
-
   useEffect(() => {
-    console.log("Dropdown ~ dropdownRef", dropdownRef);
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, [dropdownRef]);
+
   return (
-    <div
-      className={style.dropdown}
-      // onBlur={() => {
-      //   console.log("onBlur veikia");
-      //   setIsDropdownOpen(false);
-      // }}
-      onClick={(e) => console.log("e.target:", e.target)}
-    >
+    <div className={style.dropdown}>
       <button
         onClick={handleToggleDropdown}
         className={btnClassName}
         ref={dropdownRef}
       >
-        {dropDownTitle}{" "}
-        <Arrow style={{ marginLeft: "5px" }} rotate={isDropdownOpen} />
+        {dropDownTitle}
+        <Arrow
+          style={{ marginLeft: "5px" }}
+          rotate={isDropdownOpen}
+          active={isArrowActive}
+        />
       </button>
       {isDropdownOpen && (
         <ul className={style["dropwdown-content"]}>
           <li>Category</li>
           {categories.map((category) => (
-            <li
-              key={category}
-              onClick={handleOnClick}
-              // onClick={() => setIsDropdownOpen(false)}
-            >
+            <li key={category} onClick={handleOnClick}>
               {category}
             </li>
           ))}
