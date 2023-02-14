@@ -3,8 +3,8 @@ import ToDoWrapper from "./components/ToDoWrapper/ToDoWrapper.jsx";
 import TopDashBoard from "./components/TopDashBoard/TopDashBoard.jsx";
 import style from "./App.module.scss";
 import Task from "./components/Task/Task.jsx";
-import NewTaskWrapper from "./components/NewTaskWrapper/NewTaskWrapper.jsx";
-import TasksWrapper from "./components/TasksWrapper/TasksWrapper.jsx";
+import NewTaskEntry from "./components/NewTaskEntry/NewTaskEntry.jsx";
+import TasksList from "./components/TasksList/TasksList.jsx";
 import BottomDashBoard from "./components/BottomDashBoard/BottomDashBoard.jsx";
 
 function App() {
@@ -28,14 +28,14 @@ function App() {
     <main className={style.main} id={theme}>
       <ToDoWrapper>
         <TopDashBoard title={"to do"} theme={theme}></TopDashBoard>
-        <NewTaskWrapper
+        <NewTaskEntry
           tasks={tasks}
           setTasks={setTasks}
           categories={categories}
-        ></NewTaskWrapper>
-        <TasksWrapper tasks={tasks} setTasks={setTasks} categories={categories}>
+        ></NewTaskEntry>
+        <TasksList tasks={tasks} setTasks={setTasks} categories={categories}>
           <BottomDashBoard tasks={tasks} setTasks={setTasks}></BottomDashBoard>
-        </TasksWrapper>
+        </TasksList>
       </ToDoWrapper>
     </main>
   );

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
-import style from "./NewTaskWrapper.module.scss";
+import style from "./NewTaskEntry.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
 import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
 import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
 import Button from "../atoms/Button/Button.jsx";
 
-const NewTaskWrapper = (props) => {
+const NewTaskEntry = (props) => {
   const { tasks, setTasks, categories } = props;
   const [newTask, setNewTask] = useState({
     id: uuidv4(),
@@ -85,4 +85,4 @@ const NewTaskWrapper = (props) => {
   );
 };
 
-export default NewTaskWrapper;
+export default NewTaskEntry;

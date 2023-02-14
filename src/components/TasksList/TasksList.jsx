@@ -1,8 +1,8 @@
 import React from "react";
 import Task from "../Task/Task.jsx";
-import style from "./TasksWrapper.module.scss";
+import style from "./TasksList.module.scss";
 
-const TasksWrapper = (props) => {
+const TasksList = (props) => {
   const { tasks, setTasks, categories, children } = props;
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
@@ -47,4 +47,4 @@ const TasksWrapper = (props) => {
   );
 };
 
-export default TasksWrapper;
+export default TasksList;
