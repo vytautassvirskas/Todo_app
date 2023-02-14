@@ -5,21 +5,16 @@ import Arrow from "../Icons/Arrow/Arrow.jsx";
 const Dropdown = (props) => {
   const { categories, dropdownType, task, onClick, ...restProps } = props;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isDropdownActive, setIsDropdownActive] = useState(false);
   const dropdownRef = useRef();
   let btnClassName;
   let dropDownTitle;
-  let isArrowActive;
   if (dropdownType === "filter") {
-    console.log("filtravimo dropdown");
     btnClassName = style["btn--filter"];
-    dropDownTitle = "Filter by category";
-    isArrowActive = true;
+    dropDownTitle = "filter by category";
   } else {
     btnClassName =
       isDropdownOpen || task.category ? style["btn--active"] : style.btn;
     dropDownTitle = task.category ? task.category : "Category";
-    isArrowActive = task.category ? true : false;
   }
 
   const handleToggleDropdown = () => {
@@ -52,11 +47,7 @@ const Dropdown = (props) => {
         ref={dropdownRef}
       >
         {dropDownTitle}
-        <Arrow
-          style={{ marginLeft: "5px" }}
-          rotate={isDropdownOpen}
-          active={isArrowActive}
-        />
+        <Arrow style={{ marginLeft: "5px" }} rotate={isDropdownOpen} />
       </button>
       {isDropdownOpen && (
         <ul className={style["dropwdown-content"]}>

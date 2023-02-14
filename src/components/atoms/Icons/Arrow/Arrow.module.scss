@@ -7,10 +7,6 @@
   &--rotate {
     @extend .arrow;
     transform: rotate(180deg);
-    fill: $c-text-uncompleted;
-  }
-  &--active {
-    @extend .arrow;
-    fill: $c-text-uncompleted;
+    fill: $c-text-inactive;
   }
 }
