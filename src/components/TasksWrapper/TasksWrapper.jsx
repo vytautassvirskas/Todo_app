@@ -3,7 +3,7 @@ import Task from "../Task/Task.jsx";
 import style from "./TasksWrapper.module.scss";
 
 const TasksWrapper = (props) => {
-  const { tasks, setTasks, children } = props;
+  const { tasks, setTasks, categories, children } = props;
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
@@ -30,6 +30,7 @@ const TasksWrapper = (props) => {
               task={task}
               handleDeleteTask={handleDeleteTask}
               handleChangeTask={handleChangeTask}
+              categories={categories}
             ></Task>
           ))
         ) : (

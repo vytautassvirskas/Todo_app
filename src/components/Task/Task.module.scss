@@ -6,16 +6,20 @@
   justify-content: flex-start;
   background-color: $c-bg-todo;
   padding: 1.25rem;
-  border-radius: 0.3125rem;
+  border-bottom: 1px solid $c-text-completed;
 }
-
-// input[name="taskName"] {
-//   background-color: transparent;
-//   outline: transparent;
-//   border: none;
-//   color: $c-text-uncompleted;
-// }
-// input[name="taskName"]::placeholder {
-//   font-family: $ff-primary;
-//   color: $c-text-inactive;
-// }
+.task-title {
+  color: $c-text-uncompleted;
+}
+.vertical-mark {
+  margin: 0 5px;
+  color: $c-text-uncompleted;
+}
+.task-category {
+  color: $c-text-uncompleted;
+  text-transform: lowercase;
+}
+.btns-wrapper {
+  @include flexCenter;
+  margin-left: auto;
+}

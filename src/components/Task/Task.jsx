@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import style from "./Task.module.scss";
-import Button from "../atoms/Button/Button.jsx";
-import Delete from "../atoms/Icons/Delete/Delete.jsx";
-import Check from "../atoms/Icons/Check/Check.jsx";
 import Circle from "../atoms/Circle/Circle.jsx";
-import Edit from "../atoms/Icons/Edit/Edit.jsx";
+import Check from "../atoms/Icons/Check/Check.jsx";
 import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
+import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
+import Button from "../atoms/Button/Button.jsx";
+import Edit from "../atoms/Icons/Edit/Edit.jsx";
+import Delete from "../atoms/Icons/Delete/Delete.jsx";
 
-const Task = ({ task, handleDeleteTask, handleChangeTask }) => {
+const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   const [isEditable, setIsEditable] = useState(false);
 
   let checkCircle;
@@ -28,30 +29,48 @@ const Task = ({ task, handleDeleteTask, handleChangeTask }) => {
       ></Circle>
     );
   }
-  //this repeats on newTaskWrapper.jsx
-  const handleChange = (e) => {
-    setNewTask({ ...newTask, [e.target.name]: e.target.value });
-  };
+
+  let taskContent;
+  console.log("Task ~ setIsEditable", isEditable);
+  if (isEditable) {
+    taskContent = (
+      <>
+        <TaskInput
+          task={task}
+          onChange={(e) =>
+            handleChangeTask({ ...task, [e.target.name]: e.target.value })
+          }
+        ></TaskInput>
+
+        <Dropdown
+          task={task}
+          categories={categories}
+          style={{ marginRight: "20px" }}
+        ></Dropdown>
+
+        <Button onClick={() => setIsEditable(false)}>save</Button>
+      </>
+    );
+  } else {
+    taskContent = (
+      <>
+        <h3 className={style["task-title"]}>{task.taskName}</h3>
+        <span className={style["vertical-mark"]}>|</span>
+        <span className={style["task-category"]}>{task.category}</span>
+        <Button
+          style={{ marginRight: "8px", marginLeft: "auto" }}
+          onClick={() => setIsEditable(true)}
+        >
+          <Edit></Edit>
+        </Button>
+      </>
+    );
+  }
 
   return (
     <li key={task.id} className={style["task-wrapper"]}>
       {checkCircle}
-      <TaskInput
-        task={task}
-        onChange={(e) =>
-          handleChangeTask({ ...task, [e.target.name]: e.target.value })
-        }
-      ></TaskInput>
-
-      <span style={{ marginRight: "20px", color: "white" }}>
-        {task.category}
-      </span>
-      <Button
-        style={{ marginRight: "8px" }}
-        onClick={() => console.log("editinam")}
-      >
-        <Edit></Edit>
-      </Button>
+      {taskContent}
       <Button onClick={() => handleDeleteTask(task.id)}>
         <Delete></Delete>
       </Button>

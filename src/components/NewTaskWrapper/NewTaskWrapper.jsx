@@ -2,10 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import style from "./NewTaskWrapper.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
-import Button from "../atoms/Button/Button.jsx";
 import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
 import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
-import dropdownArrow from "../../assets/images/dropdown-svgrepo-com.svg";
+import Button from "../atoms/Button/Button.jsx";
 
 const NewTaskWrapper = (props) => {
   const { tasks, setTasks, categories } = props;
@@ -16,7 +15,7 @@ const NewTaskWrapper = (props) => {
     category: "",
   });
   const inputRef = useRef(null);
-
+  const dropdDownRef = useRef(null);
   const isDisabled = newTask.taskName ? false : true;
 
   const handleChange = (e) => {
@@ -30,6 +29,7 @@ const NewTaskWrapper = (props) => {
 
   const handleAddNewTask = () => {
     if (!newTask.taskName && !newTask.category) {
+      inputRef.current.focus();
       return;
     }
     if (!newTask.taskName) {
@@ -37,7 +37,7 @@ const NewTaskWrapper = (props) => {
       return;
     }
     if (!newTask.category) {
-      inputRef.current.focus();
+      // inputRef.current.focus();
       return;
     }
     setTasks([newTask, ...tasks]);

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import style from "./Dropdown.module.scss";
 import Arrow from "../Icons/Arrow/Arrow.jsx";
 
-const Dropdown = ({ categories, task, onClick }) => {
+const Dropdown = ({ categories, task, onClick, ...restProps }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef();
 
@@ -36,6 +36,7 @@ const Dropdown = ({ categories, task, onClick }) => {
   return (
     <div className={style.dropdown}>
       <button
+        {...restProps}
         onClick={handleToggleDropdown}
         className={btnClassName}
         ref={dropdownRef}

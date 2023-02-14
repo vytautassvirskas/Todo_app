@@ -14,7 +14,7 @@ function App() {
   const [tasks, setTasks] = useState(
     () => JSON.parse(localStorage.getItem("tasks")) || []
   );
-  const [filteredTasks, setFilteredTasks] = useState()
+  const [filteredTasks, setFilteredTasks] = useState();
   const categories = ["Personal", "Work"];
 
   // useEffect(() => {
@@ -33,7 +33,7 @@ function App() {
           setTasks={setTasks}
           categories={categories}
         ></NewTaskWrapper>
-        <TasksWrapper tasks={tasks} setTasks={setTasks}>
+        <TasksWrapper tasks={tasks} setTasks={setTasks} categories={categories}>
           <BottomDashBoard tasks={tasks} setTasks={setTasks}></BottomDashBoard>
         </TasksWrapper>
       </ToDoWrapper>

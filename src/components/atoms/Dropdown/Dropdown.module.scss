@@ -20,6 +20,7 @@
   }
   .dropwdown-content {
     position: absolute;
+    z-index: 1;
     background-color: $c-text-uncompleted;
     border-radius: 0.3125rem;
     overflow: hidden;
