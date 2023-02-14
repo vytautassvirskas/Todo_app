@@ -15,19 +15,23 @@
     &--active {
       @extend .btn;
       color: $c-text-uncompleted;
-      // color: tomato;
+    }
+    &--filter {
+      @extend .btn;
+      color: $c-text-app-title;
     }
   }
   .dropwdown-content {
     position: absolute;
     z-index: 1;
+    right: 0;
     background-color: $c-text-uncompleted;
     border-radius: 0.3125rem;
     overflow: hidden;
     animation: apear 0.3s ease-in-out;
 
     li {
-      padding: 8px;
+      padding: 0.5rem;
       color: $c-text-completed;
       transition: all 0.2s ease-in-out;
     }

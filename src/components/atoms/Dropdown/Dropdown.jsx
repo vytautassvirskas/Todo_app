@@ -2,14 +2,25 @@ import React, { useState, useRef, useEffect } from "react";
 import style from "./Dropdown.module.scss";
 import Arrow from "../Icons/Arrow/Arrow.jsx";
 
-const Dropdown = ({ categories, task, onClick, ...restProps }) => {
+const Dropdown = (props) => {
+  const { categories, dropdownType, task, onClick, ...restProps } = props;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
   const dropdownRef = useRef();
-
-  const btnClassName =
-    isDropdownOpen || task.category ? style["btn--active"] : style.btn;
-  const dropDownTitle = task.category ? task.category : "Category";
-  const isArrowActive = task.category ? true : false;
+  let btnClassName;
+  let dropDownTitle;
+  let isArrowActive;
+  if (dropdownType === "filter") {
+    console.log("filtravimo dropdown");
+    btnClassName = style["btn--filter"];
+    dropDownTitle = "Filter by category";
+    isArrowActive = true;
+  } else {
+    btnClassName =
+      isDropdownOpen || task.category ? style["btn--active"] : style.btn;
+    dropDownTitle = task.category ? task.category : "Category";
+    isArrowActive = task.category ? true : false;
+  }
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -17,6 +28,7 @@ const Dropdown = ({ categories, task, onClick, ...restProps }) => {
 
   const handleOnClick = (e) => {
     onClick(e);
+    setIsDropdownActive(true);
     setIsDropdownOpen(false);
   };
 
@@ -27,12 +39,10 @@ const Dropdown = ({ categories, task, onClick, ...restProps }) => {
       }
     }
     document.addEventListener("click", handleClickOutside);
-
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [dropdownRef]);
-
   return (
     <div className={style.dropdown}>
       <button
@@ -50,7 +60,7 @@ const Dropdown = ({ categories, task, onClick, ...restProps }) => {
       </button>
       {isDropdownOpen && (
         <ul className={style["dropwdown-content"]}>
-          <li>Category</li>
+          <li>category</li>
           {categories.map((category) => (
             <li key={category} onClick={handleOnClick}>
               {category}

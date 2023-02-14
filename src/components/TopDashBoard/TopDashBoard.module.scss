@@ -6,9 +6,13 @@
 
 .title {
   text-transform: uppercase;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: $fw-bold;
-  color: $c-text-uncompleted;
+  color: $c-text-app-title;
   letter-spacing: 0.875rem;
   word-spacing: -0.875rem;
+}
+
+.img {
+  cursor: pointer;
 }

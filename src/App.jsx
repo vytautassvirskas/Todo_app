@@ -15,11 +15,14 @@ function App() {
     () => JSON.parse(localStorage.getItem("tasks")) || []
   );
   const [filteredTasks, setFilteredTasks] = useState();
-  const categories = ["personal", "work"];
+  const categories = ["Personal", "Work"];
 
   // useEffect(() => {
   //   let dataCopy = [...tasks];
   // }, [tasks]);
+  const handleToggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -27,7 +30,11 @@ function App() {
   return (
     <main className={style.main} id={theme}>
       <ToDoWrapper>
-        <TopDashBoard title={"to do"} theme={theme}></TopDashBoard>
+        <TopDashBoard
+          title={"to do"}
+          theme={theme}
+          handleToggleTheme={handleToggleTheme}
+        ></TopDashBoard>
         <NewTaskEntry
           tasks={tasks}
           setTasks={setTasks}
