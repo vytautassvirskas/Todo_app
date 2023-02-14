@@ -1,0 +1,11 @@
+@import "../../../../assets/sass/variables.scss";
+
+.save {
+  path {
+    fill: $c-text-button;
+    transition: fill 0.2s ease-in-out;
+  }
+  &:hover path {
+    fill: $c-text-button-hover;
+  }
+}

@@ -6,6 +6,7 @@ import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
 import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
 import Button from "../atoms/Button/Button.jsx";
 import Edit from "../atoms/Icons/Edit/Edit.jsx";
+import Save from "../atoms/Icons/Save/Save.jsx";
 import Delete from "../atoms/Icons/Delete/Delete.jsx";
 
 const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
@@ -48,7 +49,12 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
           style={{ marginRight: "20px" }}
         ></Dropdown>
 
-        <Button onClick={() => setIsEditable(false)}>save</Button>
+        <Button
+          style={{ marginRight: "8px", marginLeft: "auto" }}
+          onClick={() => setIsEditable(false)}
+        >
+          <Save></Save>
+        </Button>
       </>
     );
   } else {
