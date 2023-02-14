@@ -15,7 +15,7 @@ function App() {
     () => JSON.parse(localStorage.getItem("tasks")) || []
   );
   const [filteredTasks, setFilteredTasks] = useState();
-  const categories = ["Personal", "Work"];
+  const categories = ["personal", "work"];
 
   // useEffect(() => {
   //   let dataCopy = [...tasks];

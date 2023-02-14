@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import style from "./Task.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
 import Check from "../atoms/Icons/Check/Check.jsx";
@@ -11,6 +11,8 @@ import Delete from "../atoms/Icons/Delete/Delete.jsx";
 
 const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   const [isEditable, setIsEditable] = useState(false);
+  const inputRef = useRef(null);
+  const editSaveBtnStyle = { marginRight: "8px", marginLeft: "auto" };
 
   let checkCircle;
   if (task.isCompleted) {
@@ -26,17 +28,20 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
     checkCircle = (
       <Circle
         circleType={"active"}
-        onClick={() => handleChangeTask({ ...task, isCompleted: true })}
+        onClick={() => {
+          handleChangeTask({ ...task, isCompleted: true });
+          setIsEditable(false);
+        }}
       ></Circle>
     );
   }
 
   let taskContent;
-  console.log("Task ~ setIsEditable", isEditable);
   if (isEditable) {
     taskContent = (
       <>
         <TaskInput
+          forwardRef={inputRef}
           task={task}
           onChange={(e) =>
             handleChangeTask({ ...task, [e.target.name]: e.target.value })
@@ -47,12 +52,12 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
           task={task}
           categories={categories}
           style={{ marginRight: "20px" }}
+          onClick={(e) =>
+            handleChangeTask({ ...task, category: e.target.innerHTML })
+          }
         ></Dropdown>
 
-        <Button
-          style={{ marginRight: "8px", marginLeft: "auto" }}
-          onClick={() => setIsEditable(false)}
-        >
+        <Button style={editSaveBtnStyle} onClick={() => setIsEditable(false)}>
           <Save></Save>
         </Button>
       </>
@@ -60,13 +65,18 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   } else {
     taskContent = (
       <>
-        <h3 className={style["task-title"]}>{task.taskName}</h3>
-        <span className={style["vertical-mark"]}>|</span>
-        <span className={style["task-category"]}>{task.category}</span>
-        <Button
-          style={{ marginRight: "8px", marginLeft: "auto" }}
-          onClick={() => setIsEditable(true)}
+        <h3
+          className={
+            !task.isCompleted
+              ? style["task-title"]
+              : style["task-title--completed"]
+          }
         >
+          {task.taskName}
+          <span className={style["vertical-mark"]}> | </span>
+          <span className={style["task-category"]}>{task.category}</span>
+        </h3>
+        <Button style={editSaveBtnStyle} onClick={() => setIsEditable(true)}>
           <Edit></Edit>
         </Button>
       </>

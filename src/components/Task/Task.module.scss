@@ -10,15 +10,24 @@
 }
 .task-title {
   color: $c-text-uncompleted;
+  transition: color 0.2s ease-in-out;
+  &--completed {
+    @extend .task-title;
+    color: $c-text-completed;
+    text-decoration: line-through;
+    .task-category {
+      color: inherit;
+    }
+  }
 }
 .vertical-mark {
-  margin: 0 5px;
-  color: $c-text-uncompleted;
+  color: $c-text-completed;
 }
+
 .task-category {
-  color: $c-text-uncompleted;
-  text-transform: lowercase;
+  color: $c-text-inactive;
 }
+
 .btns-wrapper {
   @include flexCenter;
   margin-left: auto;
