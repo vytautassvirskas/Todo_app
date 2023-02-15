@@ -46,8 +46,9 @@ const BottomDashBoard = ({
         </div>
         <Dropdown
           style={{ marginTop: "10px" }}
-          dropdownType="filter"
           categories={categories}
+          dropdownType="filter"
+          dropDownTitle={"filter by category"}
           onClick={handleSelectFilterCategory}
         ></Dropdown>
       </div>

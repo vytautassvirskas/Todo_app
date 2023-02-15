@@ -3,19 +3,23 @@ import style from "./Dropdown.module.scss";
 import Arrow from "../Icons/Arrow/Arrow.jsx";
 
 const Dropdown = (props) => {
-  const { categories, dropdownType, task, onClick, ...restProps } = props;
+  const {
+    categories,
+    dropdownType,
+    isActive,
+    dropDownTitle,
+    onClick,
+    ...restProps
+  } = props;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef();
 
   let btnClassName;
-  let dropDownTitle;
   if (dropdownType === "filter") {
     btnClassName = style["btn--filter"];
-    dropDownTitle = "filter by category";
   } else {
     btnClassName =
-      isDropdownOpen || task.category ? style["btn--active"] : style.btn;
-    dropDownTitle = task.category ? task.category : "Category";
+      isDropdownOpen || isActive ? style["btn--active"] : style.btn;
   }
 
   const handleToggleDropdown = () => {

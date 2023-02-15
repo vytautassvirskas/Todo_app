@@ -69,8 +69,9 @@ const NewTaskEntry = (props) => {
         ></TaskInput>
         <Dropdown
           categories={categories}
+          isActive={newTask.category ? true : false}
+          dropDownTitle={newTask.category ? newTask.category : "Category"}
           onClick={handleSelectCategory}
-          task={newTask}
         ></Dropdown>
         <Button
           style={{ marginLeft: "auto" }}

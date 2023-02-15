@@ -49,8 +49,9 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
         ></TaskInput>
 
         <Dropdown
-          task={task}
           categories={categories}
+          isActive={task.category ? true : false}
+          dropDownTitle={task.category ? task.category : "Category"}
           style={{ marginRight: "20px" }}
           onClick={(e) =>
             handleChangeTask({ ...task, category: e.target.innerHTML })
