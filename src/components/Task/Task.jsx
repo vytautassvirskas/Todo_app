@@ -15,11 +15,11 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   const editSaveBtnStyle = { marginRight: "8px", marginLeft: "auto" };
 
   let checkCircle;
-  if (task.isCompleted) {
+  if (task.status === "completed") {
     checkCircle = (
       <Circle
         circleType={"checked"}
-        onClick={() => handleChangeTask({ ...task, isCompleted: false })}
+        onClick={() => handleChangeTask({ ...task, status: "active" })}
       >
         <Check></Check>
       </Circle>
@@ -29,7 +29,7 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
       <Circle
         circleType={"active"}
         onClick={() => {
-          handleChangeTask({ ...task, isCompleted: true });
+          handleChangeTask({ ...task, status: "completed" });
           setIsEditable(false);
         }}
       ></Circle>
@@ -67,7 +67,7 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
       <>
         <h3
           className={
-            !task.isCompleted
+            task.status === "active"
               ? style["task-title"]
               : style["task-title--completed"]
           }

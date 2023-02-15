@@ -11,7 +11,7 @@ const NewTaskEntry = (props) => {
   const [newTask, setNewTask] = useState({
     id: uuidv4(),
     taskName: "",
-    isCompleted: false,
+    status: "active",
     category: "",
   });
   const inputRef = useRef(null);
@@ -44,7 +44,7 @@ const NewTaskEntry = (props) => {
     setNewTask({
       id: uuidv4(),
       taskName: "",
-      isCompleted: false,
+      status: "active",
       category: "",
     });
   };
@@ -74,7 +74,6 @@ const NewTaskEntry = (props) => {
         ></Dropdown>
         <Button
           style={{ marginLeft: "auto" }}
-          // disabled={isDisabled}
           btnType="blue"
           onClick={handleAddNewTask}
         >

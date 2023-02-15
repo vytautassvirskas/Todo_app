@@ -14,17 +14,27 @@ function App() {
   const [tasks, setTasks] = useState(
     () => JSON.parse(localStorage.getItem("tasks")) || []
   );
-  const [filteredTasks, setFilteredTasks] = useState();
+  const [filterCategory, setFilterCategory] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
+
   const categories = ["Personal", "Work"];
 
   const handleToggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
     localStorage.setItem("toDoTheme", theme);
   };
+
+  //check filterCategory state value
+  useEffect(() => {
+    console.log("filterCategory", filterCategory);
+  }, [filterCategory]);
+
+  //check theme state value
   useEffect(() => {
     localStorage.setItem("toDoTheme", theme);
   }, [theme]);
 
+  //check tasks state value
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -41,11 +51,20 @@ function App() {
           setTasks={setTasks}
           categories={categories}
         ></NewTaskEntry>
-        <TasksList tasks={tasks} setTasks={setTasks} categories={categories}>
+        <TasksList
+          tasks={tasks}
+          setTasks={setTasks}
+          categories={categories}
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          filterCategory={filterCategory}
+        >
           <BottomDashBoard
             tasks={tasks}
             setTasks={setTasks}
             categories={categories}
+            setFilterStatus={setFilterStatus}
+            setFilterCategory={setFilterCategory}
           ></BottomDashBoard>
         </TasksList>
       </ToDoWrapper>

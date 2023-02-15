@@ -6,6 +6,7 @@ const Dropdown = (props) => {
   const { categories, dropdownType, task, onClick, ...restProps } = props;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef();
+
   let btnClassName;
   let dropDownTitle;
   if (dropdownType === "filter") {
@@ -23,7 +24,6 @@ const Dropdown = (props) => {
 
   const handleOnClick = (e) => {
     onClick(e);
-    setIsDropdownActive(true);
     setIsDropdownOpen(false);
   };
 
@@ -51,7 +51,8 @@ const Dropdown = (props) => {
       </button>
       {isDropdownOpen && (
         <ul className={style["dropwdown-content"]}>
-          <li>category</li>
+          <li>Category</li>
+          {dropdownType === "filter" && <li onClick={handleOnClick}>All</li>}
           {categories.map((category) => (
             <li key={category} onClick={handleOnClick}>
               {category}

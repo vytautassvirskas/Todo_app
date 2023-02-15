@@ -3,12 +3,25 @@ import style from "./BottomDashBoard.module.scss";
 import Button from "../atoms/Button/Button.jsx";
 import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
 
-const BottomDashBoard = ({ tasks, setTasks, categories }) => {
+const BottomDashBoard = ({
+  tasks,
+  setTasks,
+  categories,
+  setFilterStatus,
+  setFilterCategory,
+}) => {
   const taskAmount = tasks.length;
-  // console.log("BottomDashBoard ~ taskAmount", taskAmount);
   const handleClearCompleted = () => {
-    setTasks(tasks.filter((task) => task.isCompleted === false));
+    setTasks(tasks.filter((task) => task.status === "completed"));
   };
+
+  const handleSelectFilterCategory = (e) => {
+    setFilterCategory(e.target.innerHTML.toLowerCase());
+  };
+
+  if (taskAmount === 0) {
+    return null;
+  }
   return (
     <div className={style.dashboard}>
       <span className={style.amount}>{taskAmount} items left</span>
@@ -17,25 +30,25 @@ const BottomDashBoard = ({ tasks, setTasks, categories }) => {
           <Button
             btnType="blue"
             style={{ marginRight: "1rem" }}
-            onClick={() => console.log("all")}
+            onClick={() => setFilterStatus("all")}
           >
             All
           </Button>
           <Button
             style={{ marginRight: "1rem" }}
-            onClick={() => console.log("active")}
+            onClick={() => setFilterStatus("active")}
           >
             Active
           </Button>
-          <Button onClick={() => console.log("completed")}>Completed</Button>
+          <Button onClick={() => setFilterStatus("completed")}>
+            Completed
+          </Button>
         </div>
         <Dropdown
           style={{ marginTop: "10px" }}
           dropdownType="filter"
           categories={categories}
-          onClick={() => {
-            console.log("filtruojam pagal tipa");
-          }}
+          onClick={handleSelectFilterCategory}
         ></Dropdown>
       </div>
       <Button btnType="regular" onClick={handleClearCompleted}>

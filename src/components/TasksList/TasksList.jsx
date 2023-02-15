@@ -3,7 +3,16 @@ import Task from "../Task/Task.jsx";
 import style from "./TasksList.module.scss";
 
 const TasksList = (props) => {
-  const { tasks, setTasks, categories, children } = props;
+  const {
+    tasks,
+    setTasks,
+    categories,
+    filterStatus,
+    setFilterStatus,
+    filterCategory,
+    children,
+  } = props;
+
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
@@ -19,12 +28,19 @@ const TasksList = (props) => {
     );
   };
 
-  console.log("tasks: ", tasks);
+  const filteredTasks = tasks.filter(({ status, category }) => {
+    const isStatusMatch = filterStatus === "all" || status === filterStatus;
+    const isCategoryMatch =
+      filterCategory === "all" || category.toLowerCase() === filterCategory;
+    return isStatusMatch && isCategoryMatch;
+  });
+
+  console.log("TasksList ~ filteredTasks tasks kopija", filteredTasks);
   return (
     <div className={style.wrapper}>
       <ul>
-        {tasks.length > 0 ? (
-          tasks.map((task) => (
+        {filteredTasks.length > 0 ? (
+          filteredTasks.map((task) => (
             <Task
               key={task.id}
               task={task}
