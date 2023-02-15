@@ -7,6 +7,7 @@ const BottomDashBoard = ({
   tasks,
   setTasks,
   categories,
+  filterStatus,
   setFilterStatus,
   setFilterCategory,
 }) => {
@@ -28,19 +29,24 @@ const BottomDashBoard = ({
       <div className={style["filters-wrapper"]}>
         <div className={style["filter-status"]}>
           <Button
-            btnType="blue"
             style={{ marginRight: "1rem" }}
+            // btnType="blue"
+            btnType={filterStatus === "all" && "blue"}
             onClick={() => setFilterStatus("all")}
           >
             All
           </Button>
           <Button
             style={{ marginRight: "1rem" }}
+            btnType={filterStatus === "active" && "blue"}
             onClick={() => setFilterStatus("active")}
           >
             Active
           </Button>
-          <Button onClick={() => setFilterStatus("completed")}>
+          <Button
+            btnType={filterStatus === "completed" && "blue"}
+            onClick={() => setFilterStatus("completed")}
+          >
             Completed
           </Button>
         </div>

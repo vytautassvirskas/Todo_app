@@ -14,6 +14,9 @@
   &--blue {
     @extend .btn;
     color: $c-text-primary;
+    &:hover {
+      color: $c-text-primary-hover;
+    }
   }
   &--regular {
     @extend .btn;

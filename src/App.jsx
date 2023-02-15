@@ -63,6 +63,7 @@ function App() {
             tasks={tasks}
             setTasks={setTasks}
             categories={categories}
+            filterStatus={filterStatus}
             setFilterStatus={setFilterStatus}
             setFilterCategory={setFilterCategory}
           ></BottomDashBoard>
