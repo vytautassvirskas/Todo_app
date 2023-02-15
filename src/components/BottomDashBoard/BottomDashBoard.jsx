@@ -9,6 +9,7 @@ const BottomDashBoard = ({
   categories,
   filterStatus,
   setFilterStatus,
+  filterCategory,
   setFilterCategory,
 }) => {
   const taskAmount = tasks.length;
@@ -19,6 +20,15 @@ const BottomDashBoard = ({
   const handleSelectFilterCategory = (e) => {
     setFilterCategory(e.target.innerHTML.toLowerCase());
   };
+
+  const dropDownTitleContent = (
+    <>
+      <h4>
+        filter by category -
+        <span className={style.category}> {filterCategory}</span>
+      </h4>
+    </>
+  );
 
   if (taskAmount === 0) {
     return null;
@@ -54,11 +64,16 @@ const BottomDashBoard = ({
           style={{ marginTop: "10px" }}
           categories={categories}
           dropdownType="filter"
-          dropDownTitle={"filter by category"}
+          // dropDownTitle={"filter by category - " + filterCategory}
+          dropDownTitle={dropDownTitleContent}
           onClick={handleSelectFilterCategory}
         ></Dropdown>
       </div>
-      <Button btnType="regular" onClick={handleClearCompleted}>
+      <Button
+        style={{ flex: "1" }}
+        btnType="regular"
+        onClick={handleClearCompleted}
+      >
         Clear Completed
       </Button>
     </div>

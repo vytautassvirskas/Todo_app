@@ -16,11 +16,15 @@
     &--active {
       @extend .btn;
       color: $c-text-uncompleted;
+      &:hover {
+        color: $c-text-inactive;
+      }
     }
     &--filter {
       @extend .btn;
       font-weight: $fw-bold;
       color: $c-text-button;
+      // color: $c-text-uncompleted;
       font-size: $fs-button;
     }
   }
