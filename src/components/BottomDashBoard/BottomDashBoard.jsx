@@ -14,7 +14,7 @@ const BottomDashBoard = ({
 }) => {
   const taskAmount = tasks.length;
   const handleClearCompleted = () => {
-    setTasks(tasks.filter((task) => task.status === "completed"));
+    setTasks(tasks.filter((task) => task.status === "active"));
   };
 
   const handleSelectFilterCategory = (e) => {
@@ -40,7 +40,6 @@ const BottomDashBoard = ({
         <div className={style["filter-status"]}>
           <Button
             style={{ marginRight: "1rem" }}
-            // btnType="blue"
             btnType={filterStatus === "all" && "blue"}
             onClick={() => setFilterStatus("all")}
           >
@@ -60,13 +59,13 @@ const BottomDashBoard = ({
             Completed
           </Button>
         </div>
-        {/* <Dropdown
+        <Dropdown
           style={{ marginTop: "10px" }}
           categories={categories}
           dropdownType="filter"
           dropDownTitle={dropDownTitleContent}
           onClick={handleSelectFilterCategory}
-        ></Dropdown> */}
+        ></Dropdown>
       </div>
       <Button
         style={{ flex: "1" }}

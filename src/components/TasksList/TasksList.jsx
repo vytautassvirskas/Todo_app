@@ -3,16 +3,9 @@ import Task from "../Task/Task.jsx";
 import style from "./TasksList.module.scss";
 
 const TasksList = (props) => {
-  const {
-    tasks,
-    setTasks,
-    categories,
-    filterStatus,
-    setFilterStatus,
-    filterCategory,
-    children,
-  } = props;
-
+  const { tasks, setTasks, categories, filterStatus, filterCategory } = props;
+  const wrapperClassName =
+    tasks.length > 0 ? style.wrapper : style["wrapper--empty"];
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
@@ -36,7 +29,7 @@ const TasksList = (props) => {
   });
 
   return (
-    <div className={style.wrapper}>
+    <div className={wrapperClassName}>
       <ul>
         {filteredTasks.length > 0 ? (
           filteredTasks.map((task) => (
@@ -49,19 +42,10 @@ const TasksList = (props) => {
             ></Task>
           ))
         ) : (
-          <p
-            style={{
-              textAlign: "center",
-              color: "white",
-              paddingTop: "1.875rem",
-            }}
-          >
-            No tasks yet.
-          </p>
+          <p className={style.empty}>No tasks yet.</p>
         )}
         <div className={style.dashboard}></div>
       </ul>
-      {children}
     </div>
   );
 };

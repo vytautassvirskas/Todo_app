@@ -3,7 +3,19 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 30rem;
-  background-color: $c-bg-todo;
+  min-height: 20rem;
+  overflow: hidden;
   margin-top: 2.5rem;
+  border-radius: 0.3125rem 0.3125rem 0 0;
+  background-color: $c-bg-todo;
+  &--empty {
+    @extend .wrapper;
+    border-radius: 0.3125rem;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.empty {
+  color: $c-text-uncompleted;
 }

@@ -4,6 +4,8 @@
   @include flexSpaceBtwn;
   margin-top: auto;
   padding: 25px;
+  background-color: $c-bg-todo;
+  border-radius: 0 0 0.3125rem 0.3125rem;
 }
 .amount {
   flex: 1;

@@ -24,20 +24,14 @@ function App() {
     localStorage.setItem("toDoTheme", theme);
   };
 
-  // //check filterCategory state value
-  // useEffect(() => {
-  //   console.log("filterCategory", filterCategory);
-  // }, [filterCategory]);
+  useEffect(() => {
+    localStorage.setItem("toDoTheme", theme);
+  }, [theme]);
 
-  // //check theme state value
-  // useEffect(() => {
-  //   localStorage.setItem("toDoTheme", theme);
-  // }, [theme]);
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
-  // //check tasks state value
-  // useEffect(() => {
-  //   localStorage.setItem("tasks", JSON.stringify(tasks));
-  // }, [tasks]);
   return (
     <main className={style.main} id={theme}>
       <ToDoWrapper>
@@ -58,17 +52,16 @@ function App() {
           filterStatus={filterStatus}
           setFilterStatus={setFilterStatus}
           filterCategory={filterCategory}
-        >
-          <BottomDashBoard
-            tasks={tasks}
-            setTasks={setTasks}
-            categories={categories}
-            filterStatus={filterStatus}
-            setFilterStatus={setFilterStatus}
-            filterCategory={filterCategory}
-            setFilterCategory={setFilterCategory}
-          ></BottomDashBoard>
-        </TasksList>
+        ></TasksList>
+        <BottomDashBoard
+          tasks={tasks}
+          setTasks={setTasks}
+          categories={categories}
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          filterCategory={filterCategory}
+          setFilterCategory={setFilterCategory}
+        ></BottomDashBoard>
       </ToDoWrapper>
     </main>
   );
