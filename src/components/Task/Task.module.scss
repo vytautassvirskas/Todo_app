@@ -6,7 +6,7 @@
   justify-content: flex-start;
   background-color: $c-bg-todo;
   padding: 1.25rem;
-  border-bottom: 1px solid $c-text-completed;
+  border-bottom: 0.0625rem solid $c-text-completed;
 }
 .task-title {
   color: $c-text-uncompleted;

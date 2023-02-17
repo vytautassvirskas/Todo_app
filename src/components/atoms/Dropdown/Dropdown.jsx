@@ -8,10 +8,12 @@ const Dropdown = (props) => {
     dropdownType,
     isActive,
     dropDownTitle,
+    isSpinArrow,
     onClick,
     ...restProps
   } = props;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const dropdownRef = useRef();
 
   let btnClassName;
@@ -42,6 +44,7 @@ const Dropdown = (props) => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [dropdownRef]);
+
   return (
     <div className={style.dropdown}>
       <button
@@ -51,7 +54,11 @@ const Dropdown = (props) => {
         ref={dropdownRef}
       >
         {dropDownTitle}
-        <Arrow style={{ marginLeft: "5px" }} rotate={isDropdownOpen} />
+        <Arrow
+          style={{ marginLeft: "0.3125rem" }}
+          rotate={isDropdownOpen}
+          isSpinArrow={isSpinArrow}
+        />
       </button>
       {isDropdownOpen && (
         <ul className={style["dropwdown-content"]}>

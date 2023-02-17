@@ -60,13 +60,13 @@ const BottomDashBoard = ({
             Completed
           </Button>
         </div>
-        <Dropdown
+        {/* <Dropdown
           style={{ marginTop: "10px" }}
           categories={categories}
           dropdownType="filter"
           dropDownTitle={dropDownTitleContent}
           onClick={handleSelectFilterCategory}
-        ></Dropdown>
+        ></Dropdown> */}
       </div>
       <Button
         style={{ flex: "1" }}

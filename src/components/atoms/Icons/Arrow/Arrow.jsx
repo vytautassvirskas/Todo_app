@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./Arrow.module.scss";
 
-const Arrow = ({ rotate, ...restProps }) => {
-  const arrowClassName = rotate ? style["arrow--rotate"] :style.arrow;
+const Arrow = ({ rotate, isSpinArrow, ...restProps }) => {
+  // useEffect(() => {
+  //   console.log("Arrow ~ isSpinArrow", isSpinArrow);
+  // }, [isSpinArrow]);
+  const arrowClassName = rotate
+    ? style["arrow--rotate"]
+    : isSpinArrow
+    ? style["arrow--spin"]
+    : style.arrow;
   return (
     <svg
       {...restProps}

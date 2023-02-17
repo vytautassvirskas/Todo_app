@@ -35,7 +35,6 @@ const TasksList = (props) => {
     return isStatusMatch && isCategoryMatch;
   });
 
-  console.log("TasksList ~ filteredTasks tasks kopija", filteredTasks);
   return (
     <div className={style.wrapper}>
       <ul>
@@ -51,7 +50,11 @@ const TasksList = (props) => {
           ))
         ) : (
           <p
-            style={{ textAlign: "center", color: "white", paddingTop: "30px" }}
+            style={{
+              textAlign: "center",
+              color: "white",
+              paddingTop: "1.875rem",
+            }}
           >
             No tasks yet.
           </p>

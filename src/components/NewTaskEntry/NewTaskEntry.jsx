@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import style from "./NewTaskEntry.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
@@ -14,16 +14,13 @@ const NewTaskEntry = (props) => {
     status: "active",
     category: "",
   });
+  const [isSpinArrow, setIsSpinArrow] = useState(false);
   const inputRef = useRef(null);
 
-  // useEffect(() => {
-  //   console.log("inputRef new task:", inputRef);
-  // }, [inputRef]);
   const handleChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
 
-  // for drobdown made by me
   const handleSelectCategory = (e) => {
     setNewTask({ ...newTask, category: e.target.innerHTML });
   };
@@ -38,7 +35,10 @@ const NewTaskEntry = (props) => {
       return;
     }
     if (!newTask.category) {
-      // inputRef.current.focus();
+      setIsSpinArrow(true);
+      setTimeout(() => {
+        setIsSpinArrow(false);
+      }, 600);
       return;
     }
     setTasks([newTask, ...tasks]);
@@ -49,14 +49,6 @@ const NewTaskEntry = (props) => {
       category: "",
     });
   };
-
-  // useEffect(() => {
-  //   console.log("newTask atsinaujino", newTask);
-  // }, [newTask]);
-
-  // useEffect(() => {
-  //   console.log("tasks atsinaujino", tasks);
-  // }, [tasks]);
 
   return (
     <>
@@ -72,6 +64,7 @@ const NewTaskEntry = (props) => {
           categories={categories}
           isActive={newTask.category ? true : false}
           dropDownTitle={newTask.category ? newTask.category : "Category"}
+          isSpinArrow={isSpinArrow}
           onClick={handleSelectCategory}
         ></Dropdown>
         <Button
