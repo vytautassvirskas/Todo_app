@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import style from "./Task.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
 import Check from "../atoms/Icons/Check/Check.jsx";
@@ -12,7 +12,7 @@ import Delete from "../atoms/Icons/Delete/Delete.jsx";
 const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   const [isEditable, setIsEditable] = useState(false);
   const inputRef = useRef(null);
-  const editSaveBtnStyle = { marginRight: "8px", marginLeft: "auto" };
+  const editSaveBtnStyle = { marginRight: "0.5rem", marginLeft: "auto" };
 
   let checkCircle;
   if (task.status === "completed") {
@@ -52,7 +52,7 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
           categories={categories}
           isActive={task.category ? true : false}
           dropDownTitle={task.category ? task.category : "Category"}
-          style={{ marginRight: "20px" }}
+          style={{ marginRight: "1.25rem" }}
           onClick={(e) =>
             handleChangeTask({ ...task, category: e.target.innerHTML })
           }
@@ -83,6 +83,12 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
       </>
     );
   }
+
+  useEffect(() => {
+    if (isEditable) {
+      inputRef.current?.focus();
+    }
+  }, [isEditable, inputRef]);
 
   return (
     <li key={task.id} className={style["task-wrapper"]}>

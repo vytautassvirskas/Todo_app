@@ -24,20 +24,20 @@ function App() {
     localStorage.setItem("toDoTheme", theme);
   };
 
-  //check filterCategory state value
-  useEffect(() => {
-    console.log("filterCategory", filterCategory);
-  }, [filterCategory]);
+  // //check filterCategory state value
+  // useEffect(() => {
+  //   console.log("filterCategory", filterCategory);
+  // }, [filterCategory]);
 
-  //check theme state value
-  useEffect(() => {
-    localStorage.setItem("toDoTheme", theme);
-  }, [theme]);
+  // //check theme state value
+  // useEffect(() => {
+  //   localStorage.setItem("toDoTheme", theme);
+  // }, [theme]);
 
-  //check tasks state value
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  // //check tasks state value
+  // useEffect(() => {
+  //   localStorage.setItem("tasks", JSON.stringify(tasks));
+  // }, [tasks]);
   return (
     <main className={style.main} id={theme}>
       <ToDoWrapper>

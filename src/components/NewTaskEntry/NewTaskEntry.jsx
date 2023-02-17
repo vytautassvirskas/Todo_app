@@ -15,9 +15,10 @@ const NewTaskEntry = (props) => {
     category: "",
   });
   const inputRef = useRef(null);
-  const dropdDownRef = useRef(null);
-  const isDisabled = newTask.taskName ? false : true;
 
+  // useEffect(() => {
+  //   console.log("inputRef new task:", inputRef);
+  // }, [inputRef]);
   const handleChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
@@ -49,13 +50,13 @@ const NewTaskEntry = (props) => {
     });
   };
 
-  useEffect(() => {
-    console.log("newTask atsinaujino", newTask);
-  }, [newTask]);
+  // useEffect(() => {
+  //   console.log("newTask atsinaujino", newTask);
+  // }, [newTask]);
 
-  useEffect(() => {
-    console.log("tasks atsinaujino", tasks);
-  }, [tasks]);
+  // useEffect(() => {
+  //   console.log("tasks atsinaujino", tasks);
+  // }, [tasks]);
 
   return (
     <>
