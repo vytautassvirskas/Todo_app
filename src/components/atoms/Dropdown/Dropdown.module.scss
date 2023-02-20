@@ -24,7 +24,6 @@
       @extend .btn;
       font-weight: $fw-bold;
       color: $c-text-button;
-      // color: $c-text-uncompleted;
       font-size: $fs-button;
     }
     @media (width <= $rd-mobile) {

@@ -62,6 +62,8 @@ function App() {
           filterCategory={filterCategory}
           setFilterCategory={setFilterCategory}
         ></BottomDashBoard>
+
+        <p className={style.dragging}>Drag and drop to reorder list</p>
       </ToDoWrapper>
     </main>
   );

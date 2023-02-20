@@ -9,7 +9,7 @@
 .amount {
   flex: 1;
   color: $c-text-button;
-  font-size: 0.875rem;
+  font-size: $fs-button;
 }
 .filters-wrapper {
   display: flex;

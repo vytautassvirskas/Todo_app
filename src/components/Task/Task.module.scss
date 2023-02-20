@@ -6,6 +6,7 @@
   background-color: $c-bg-todo;
   padding: 1.25rem;
   border-bottom: 0.0625rem solid $c-text-completed;
+  cursor: move;
 }
 
 .task-data {

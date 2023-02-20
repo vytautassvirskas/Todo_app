@@ -9,12 +9,43 @@ import Edit from "../atoms/Icons/Edit/Edit.jsx";
 import Save from "../atoms/Icons/Save/Save.jsx";
 import Delete from "../atoms/Icons/Delete/Delete.jsx";
 
-const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
+const Task = (props) => {
+  const {
+    task,
+    handleDeleteTask,
+    handleChangeTask,
+    categories,
+    draggable,
+    onDragStart,
+    onDragOver,
+    onDragEnd,
+  } = props;
   const [isEditable, setIsEditable] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
+
   const inputRef = useRef(null);
   const editSaveBtnStyle = { marginRight: "0.5rem", marginLeft: "auto" };
   let checkCircle;
+
+  const handleTaskCheck = () => {
+    handleChangeTask({ ...task, status: "completed" });
+    setIsEditable(false);
+  };
+
+  const hadleTaskUncheck = () => {
+    handleChangeTask({ ...task, status: "active" });
+  };
+
+  const handleOnChangeTaskInput = (e) => {
+    if (e.target.value.trim().length > 30) {
+      return;
+    }
+    handleChangeTask({ ...task, [e.target.name]: e.target.value });
+  };
+
+  const handleStartTaskEdit = () => {
+    setIsEditable(true);
+  };
 
   const handleSaveEditedTask = () => {
     if (task.taskName.trim().length === 0) {
@@ -24,31 +55,16 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
     }
     setIsEditable(false);
   };
-  const handleOnChangeTaskInput = (e) => {
-    if (e.target.value.trim().length > 30) {
-      return;
-    }
-    handleChangeTask({ ...task, [e.target.name]: e.target.value });
-  };
 
   if (task.status === "completed") {
     checkCircle = (
-      <Circle
-        circleType={"checked"}
-        onClick={() => handleChangeTask({ ...task, status: "active" })}
-      >
+      <Circle circleType={"checked"} onClick={hadleTaskUncheck}>
         <Check></Check>
       </Circle>
     );
   } else {
     checkCircle = (
-      <Circle
-        circleType={"active"}
-        onClick={() => {
-          handleChangeTask({ ...task, status: "completed" });
-          setIsEditable(false);
-        }}
-      ></Circle>
+      <Circle circleType={"active"} onClick={handleTaskCheck}></Circle>
     );
   }
 
@@ -95,7 +111,7 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
           <span className={style["vertical-mark"]}> | </span>
           <span className={style["task-category"]}>{task.category}</span>
         </h3>
-        <Button style={editSaveBtnStyle} onClick={() => setIsEditable(true)}>
+        <Button style={editSaveBtnStyle} onClick={handleStartTaskEdit}>
           <Edit></Edit>
         </Button>
       </>
@@ -109,7 +125,13 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   }, [isEditable, inputRef]);
 
   return (
-    <li key={task.id} className={style["task-wrapper"]}>
+    <li
+      className={style["task-wrapper"]}
+      draggable={draggable}
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+      onDragEnd={onDragEnd}
+    >
       {checkCircle}
       {taskContent}
       <Button onClick={() => handleDeleteTask(task.id)}>
