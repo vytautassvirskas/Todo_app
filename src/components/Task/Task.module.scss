@@ -10,10 +10,9 @@
 
 .task-data {
   @include flexSpaceBtwn;
-  @media (width <= $rd-mobile) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 2;
 }
 
 .task-title {
@@ -26,6 +25,9 @@
     .task-category {
       color: inherit;
     }
+  }
+  @media (width <=$rd-mobile) {
+    font-size: $fs-task-mobile;
   }
 }
 .vertical-mark {

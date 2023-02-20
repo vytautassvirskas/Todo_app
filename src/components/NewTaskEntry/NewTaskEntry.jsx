@@ -18,6 +18,9 @@ const NewTaskEntry = (props) => {
   const inputRef = useRef(null);
 
   const handleChange = (e) => {
+    if (e.target.value.trim().length > 30) {
+      return;
+    }
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
 

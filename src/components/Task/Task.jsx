@@ -24,6 +24,12 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
     }
     setIsEditable(false);
   };
+  const handleOnChangeTaskInput = (e) => {
+    if (e.target.value.trim().length > 30) {
+      return;
+    }
+    handleChangeTask({ ...task, [e.target.name]: e.target.value });
+  };
 
   if (task.status === "completed") {
     checkCircle = (
@@ -55,9 +61,8 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
             forwardRef={inputRef}
             placeholder={placeholder}
             task={task}
-            onChange={(e) =>
-              handleChangeTask({ ...task, [e.target.name]: e.target.value })
-            }
+            style={{ marginBottom: "0.625rem", width: "100%" }}
+            onChange={handleOnChangeTaskInput}
           ></TaskInput>
 
           <Dropdown

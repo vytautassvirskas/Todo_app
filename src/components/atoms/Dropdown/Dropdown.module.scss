@@ -27,6 +27,9 @@
       // color: $c-text-uncompleted;
       font-size: $fs-button;
     }
+    @media (width <= $rd-mobile) {
+      font-size: $fs-task-mobile;
+    }
   }
   .dropwdown-content {
     position: absolute;
@@ -45,6 +48,9 @@
       text-align: center;
       color: $c-text-uncompleted;
       transition: all 0.2s ease-in-out;
+      @media (width <= $rd-mobile) {
+        font-size: $fs-task-mobile;
+      }
     }
     li:first-child {
       background-color: $c-text-inactive;
@@ -59,4 +65,3 @@
     }
   }
 }
-

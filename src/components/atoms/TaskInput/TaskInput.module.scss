@@ -8,9 +8,13 @@ input[name="taskName"] {
   caret-color: $c-text-primary;
   @media (width <= $rd-mobile) {
     margin-bottom: 0.625rem;
+    font-size: $fs-task-mobile;
   }
 }
 input[name="taskName"]::placeholder {
   font-family: $ff-primary;
   color: $c-text-inactive;
+  @media (width <= $rd-mobile) {
+    font-size: $fs-task-mobile;
+  }
 }

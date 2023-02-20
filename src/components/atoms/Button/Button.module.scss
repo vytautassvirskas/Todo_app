@@ -5,6 +5,8 @@
   font-size: $fs-button;
   font-weight: $fw-bold;
   color: $c-text-button;
+  flex-shrink: 0;
+
   cursor: pointer;
   transition: color 0.2s ease-in-out;
 
