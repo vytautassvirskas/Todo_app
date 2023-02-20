@@ -5,4 +5,10 @@
   min-height: 100vh;
   background: $c-bg-main $bg-image-desktop no-repeat top;
   background-size: contain;
+  transition: all 0.2s ease-in-out;
+  @media (width <= $rd-mobile) {
+    padding: 0 1.5rem;
+    background: $c-bg-main $bg-image-mobile no-repeat top;
+    background-size: contain;
+  }
 }

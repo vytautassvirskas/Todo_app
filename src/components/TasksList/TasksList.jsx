@@ -4,8 +4,6 @@ import style from "./TasksList.module.scss";
 
 const TasksList = (props) => {
   const { tasks, setTasks, categories, filterStatus, filterCategory } = props;
-  const wrapperClassName =
-    tasks.length > 0 ? style.wrapper : style["wrapper--empty"];
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
@@ -28,6 +26,8 @@ const TasksList = (props) => {
     return isStatusMatch && isCategoryMatch;
   });
 
+  const wrapperClassName =
+    filteredTasks.length > 0 ? style.wrapper : style["wrapper--empty"];
   return (
     <div className={wrapperClassName}>
       <ul>

@@ -54,19 +54,21 @@ const NewTaskEntry = (props) => {
     <>
       <div className={style["new-task-wrapper"]}>
         <Circle circleType={"unactive"}></Circle>
-        <TaskInput
-          forwardRef={inputRef}
-          inputType="new"
-          task={newTask}
-          onChange={handleChange}
-        ></TaskInput>
-        <Dropdown
-          categories={categories}
-          isActive={newTask.category ? true : false}
-          dropDownTitle={newTask.category ? newTask.category : "Category"}
-          isSpinArrow={isSpinArrow}
-          onClick={handleSelectCategory}
-        ></Dropdown>
+        <div className={style["task-data"]}>
+          <TaskInput
+            forwardRef={inputRef}
+            inputType="new"
+            task={newTask}
+            onChange={handleChange}
+          ></TaskInput>
+          <Dropdown
+            categories={categories}
+            isActive={newTask.category ? true : false}
+            dropDownTitle={newTask.category ? newTask.category : "Category"}
+            isSpinArrow={isSpinArrow}
+            onClick={handleSelectCategory}
+          ></Dropdown>
+        </div>
         <Button
           style={{ marginLeft: "auto" }}
           btnType="blue"

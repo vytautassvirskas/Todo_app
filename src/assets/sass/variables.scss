@@ -65,3 +65,23 @@ $rd-mobile: 768px;
 }
 
 /*animations*/
+@keyframes apear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes down {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 0.2rem;
+  }
+  100% {
+    translate: 0 0;
+  }
+}

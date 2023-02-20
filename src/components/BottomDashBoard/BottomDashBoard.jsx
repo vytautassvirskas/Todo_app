@@ -30,51 +30,60 @@ const BottomDashBoard = ({
     </>
   );
 
+  const filterButtons = (
+    <>
+      <div className={style["filter-status"]}>
+        <Button
+          style={{ marginRight: "1rem" }}
+          btnType={filterStatus === "all" && "blue"}
+          onClick={() => setFilterStatus("all")}
+        >
+          All
+        </Button>
+        <Button
+          style={{ marginRight: "1rem" }}
+          btnType={filterStatus === "active" && "blue"}
+          onClick={() => setFilterStatus("active")}
+        >
+          Active
+        </Button>
+        <Button
+          btnType={filterStatus === "completed" && "blue"}
+          onClick={() => setFilterStatus("completed")}
+        >
+          Completed
+        </Button>
+      </div>
+      <Dropdown
+        style={{ marginTop: "10px" }}
+        categories={categories}
+        dropdownType="filter"
+        dropDownTitle={dropDownTitleContent}
+        onClick={handleSelectFilterCategory}
+      ></Dropdown>
+    </>
+  );
+
   if (taskAmount === 0) {
     return null;
   }
   return (
-    <div className={style.dashboard}>
-      <span className={style.amount}>{taskAmount} items left</span>
-      <div className={style["filters-wrapper"]}>
-        <div className={style["filter-status"]}>
+    <>
+      <div className={style.dashboard}>
+        <span className={style.amount}>{taskAmount} items left</span>
+        <div className={style["filters-wrapper"]}>{filterButtons}</div>
+        <div>
           <Button
-            style={{ marginRight: "1rem" }}
-            btnType={filterStatus === "all" && "blue"}
-            onClick={() => setFilterStatus("all")}
+            style={{ flex: "1" }}
+            btnType="regular"
+            onClick={handleClearCompleted}
           >
-            All
-          </Button>
-          <Button
-            style={{ marginRight: "1rem" }}
-            btnType={filterStatus === "active" && "blue"}
-            onClick={() => setFilterStatus("active")}
-          >
-            Active
-          </Button>
-          <Button
-            btnType={filterStatus === "completed" && "blue"}
-            onClick={() => setFilterStatus("completed")}
-          >
-            Completed
+            Clear Completed
           </Button>
         </div>
-        <Dropdown
-          style={{ marginTop: "10px" }}
-          categories={categories}
-          dropdownType="filter"
-          dropDownTitle={dropDownTitleContent}
-          onClick={handleSelectFilterCategory}
-        ></Dropdown>
       </div>
-      <Button
-        style={{ flex: "1" }}
-        btnType="regular"
-        onClick={handleClearCompleted}
-      >
-        Clear Completed
-      </Button>
-    </div>
+      <div className={style["filters-wrapper--mobile"]}>{filterButtons}</div>
+    </>
   );
 };
 

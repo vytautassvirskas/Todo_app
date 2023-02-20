@@ -40,23 +40,25 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   if (isEditable) {
     taskContent = (
       <>
-        <TaskInput
-          forwardRef={inputRef}
-          task={task}
-          onChange={(e) =>
-            handleChangeTask({ ...task, [e.target.name]: e.target.value })
-          }
-        ></TaskInput>
+        <div className={style["task-data"]}>
+          <TaskInput
+            forwardRef={inputRef}
+            task={task}
+            onChange={(e) =>
+              handleChangeTask({ ...task, [e.target.name]: e.target.value })
+            }
+          ></TaskInput>
 
-        <Dropdown
-          categories={categories}
-          isActive={task.category ? true : false}
-          dropDownTitle={task.category ? task.category : "Category"}
-          style={{ marginRight: "1.25rem" }}
-          onClick={(e) =>
-            handleChangeTask({ ...task, category: e.target.innerHTML })
-          }
-        ></Dropdown>
+          <Dropdown
+            categories={categories}
+            isActive={task.category ? true : false}
+            dropDownTitle={task.category ? task.category : "Category"}
+            style={{ marginRight: "1.25rem" }}
+            onClick={(e) =>
+              handleChangeTask({ ...task, category: e.target.innerHTML })
+            }
+          ></Dropdown>
+        </div>
 
         <Button style={editSaveBtnStyle} onClick={() => setIsEditable(false)}>
           <Save></Save>

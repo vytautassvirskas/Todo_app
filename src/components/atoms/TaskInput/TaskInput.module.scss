@@ -6,6 +6,9 @@ input[name="taskName"] {
   border: none;
   color: $c-text-uncompleted;
   caret-color: $c-text-primary;
+  @media (width <= $rd-mobile) {
+    margin-bottom: 0.625rem;
+  }
 }
 input[name="taskName"]::placeholder {
   font-family: $ff-primary;

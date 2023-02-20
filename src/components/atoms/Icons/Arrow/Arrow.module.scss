@@ -11,19 +11,9 @@
   }
   &--spin {
     @extend .arrow;
-    animation: spin 0.6s ease-in-out;
+    animation: down 0.6s ease-in-out;
     fill: $c-text-inactive;
   }
 }
 
-@keyframes spin {
-  0% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 0.2rem;
-  }
-  100% {
-    translate: 0 0;
-  }
-}
+
