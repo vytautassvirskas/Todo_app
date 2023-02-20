@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import style from "./TaskInput.module.scss";
 
-const TaskInput = ({ forwardRef, inputType, task, onChange }) => {
+const TaskInput = ({ forwardRef, placeholder, task, onChange }) => {
   return (
     <div className={style["input-wrapper"]}>
       <label htmlFor="task-text"></label>
@@ -11,7 +11,7 @@ const TaskInput = ({ forwardRef, inputType, task, onChange }) => {
         type="text"
         name="taskName"
         value={task.taskName}
-        placeholder={inputType === "new" ? "Create a new todo..." : ""}
+        placeholder={placeholder}
         onChange={onChange}
       />
     </div>

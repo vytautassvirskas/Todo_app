@@ -11,10 +11,20 @@ import Delete from "../atoms/Icons/Delete/Delete.jsx";
 
 const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
   const [isEditable, setIsEditable] = useState(false);
+  const [placeholder, setPlaceholder] = useState("");
   const inputRef = useRef(null);
   const editSaveBtnStyle = { marginRight: "0.5rem", marginLeft: "auto" };
-
   let checkCircle;
+
+  const handleSaveEditedTask = () => {
+    if (task.taskName.trim().length === 0) {
+      inputRef.current?.focus();
+      setPlaceholder("Can not be empty!");
+      return;
+    }
+    setIsEditable(false);
+  };
+
   if (task.status === "completed") {
     checkCircle = (
       <Circle
@@ -43,6 +53,7 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
         <div className={style["task-data"]}>
           <TaskInput
             forwardRef={inputRef}
+            placeholder={placeholder}
             task={task}
             onChange={(e) =>
               handleChangeTask({ ...task, [e.target.name]: e.target.value })
@@ -60,7 +71,7 @@ const Task = ({ task, handleDeleteTask, handleChangeTask, categories }) => {
           ></Dropdown>
         </div>
 
-        <Button style={editSaveBtnStyle} onClick={() => setIsEditable(false)}>
+        <Button style={editSaveBtnStyle} onClick={handleSaveEditedTask}>
           <Save></Save>
         </Button>
       </>

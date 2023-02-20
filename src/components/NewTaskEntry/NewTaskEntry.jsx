@@ -57,7 +57,7 @@ const NewTaskEntry = (props) => {
         <div className={style["task-data"]}>
           <TaskInput
             forwardRef={inputRef}
-            inputType="new"
+            placeholder="Create a new todo..."
             task={newTask}
             onChange={handleChange}
           ></TaskInput>
