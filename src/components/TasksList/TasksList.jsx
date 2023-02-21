@@ -7,6 +7,8 @@ const TasksList = (props) => {
   const [filteredTasks, setFilteredTasks] = useState([...tasks]);
   const [draggingIndex, setDraggingIndex] = useState(null);
   const [overIndex, setOverIndex] = useState(null);
+  let wrapperClassName;
+
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
@@ -22,12 +24,12 @@ const TasksList = (props) => {
     );
   };
 
-  const handleDragStart = (e, index, taskId) => {
+  const handleDragStart = (e, taskId) => {
     const draggingIndexOfTasks = tasks.findIndex((t) => t.id === taskId);
     setDraggingIndex(draggingIndexOfTasks);
   };
 
-  const handleDragOver = (e, index, taskId) => {
+  const handleDragOver = (e, taskId) => {
     e.preventDefault();
     const overIndexOfTasks = tasks.findIndex((t) => t.id === taskId);
     setOverIndex(overIndexOfTasks);
@@ -40,9 +42,6 @@ const TasksList = (props) => {
     newTasks.splice(overIndex, 0, draggedItem);
     setTasks(newTasks);
   };
-  useEffect(() => {
-    console.log("tasks atsinaujino: ", tasks);
-  }, [tasks]);
 
   useEffect(() => {
     const filteredTasks = tasks.filter(({ status, category }) => {
@@ -54,7 +53,7 @@ const TasksList = (props) => {
     setFilteredTasks(filteredTasks);
   }, [tasks, filterStatus, filterCategory]);
 
-  const wrapperClassName =
+  wrapperClassName =
     filteredTasks.length > 0 ? style.wrapper : style["wrapper--empty"];
 
   return (
@@ -68,9 +67,10 @@ const TasksList = (props) => {
               handleDeleteTask={handleDeleteTask}
               handleChangeTask={handleChangeTask}
               categories={categories}
+              isDraggable={true}
               draggable="true"
-              onDragStart={(e) => handleDragStart(e, index, task.id)}
-              onDragOver={(e) => handleDragOver(e, index, task.id)}
+              onDragStart={(e) => handleDragStart(e, task.id)}
+              onDragOver={(e) => handleDragOver(e, task.id)}
               onDragEnd={handleDragEnd}
             ></Task>
           ))

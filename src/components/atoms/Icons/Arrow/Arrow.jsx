@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 import style from "./Arrow.module.scss";
 
 const Arrow = ({ rotate, isSpinArrow, ...restProps }) => {
-  // useEffect(() => {
-  //   console.log("Arrow ~ isSpinArrow", isSpinArrow);
-  // }, [isSpinArrow]);
   const arrowClassName = rotate
     ? style["arrow--rotate"]
     : isSpinArrow

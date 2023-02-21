@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef} from "react";
 import { v4 as uuidv4 } from "uuid";
 import style from "./NewTaskEntry.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";

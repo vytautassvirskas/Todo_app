@@ -55,7 +55,7 @@ const BottomDashBoard = ({
         </Button>
       </div>
       <Dropdown
-        style={{ marginTop: "10px" }}
+        style={{ marginTop: "0.625rem" }}
         categories={categories}
         dropdownType="filter"
         dropDownTitle={dropDownTitleContent}

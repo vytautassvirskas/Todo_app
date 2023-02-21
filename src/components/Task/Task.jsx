@@ -26,6 +26,7 @@ const Task = (props) => {
   const inputRef = useRef(null);
   const editSaveBtnStyle = { marginRight: "0.5rem", marginLeft: "auto" };
   let checkCircle;
+  let taskContent;
 
   const handleTaskCheck = () => {
     handleChangeTask({ ...task, status: "completed" });
@@ -68,7 +69,6 @@ const Task = (props) => {
     );
   }
 
-  let taskContent;
   if (isEditable) {
     taskContent = (
       <>
