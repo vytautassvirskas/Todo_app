@@ -5,7 +5,7 @@ import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
 
 const BottomDashBoard = ({
   tasks,
-  setTasks,
+  dispatch,
   categories,
   filterStatus,
   setFilterStatus,
@@ -14,7 +14,9 @@ const BottomDashBoard = ({
 }) => {
   const taskAmount = tasks.length;
   const handleClearCompleted = () => {
-    setTasks(tasks.filter((task) => task.status === "active"));
+    dispatch({
+      type: "cleared",
+    });
   };
 
   const handleSelectFilterCategory = (e) => {

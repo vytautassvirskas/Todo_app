@@ -1,4 +1,4 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import style from "./NewTaskEntry.module.scss";
 import Circle from "../atoms/Circle/Circle.jsx";
@@ -6,8 +6,7 @@ import TaskInput from "../atoms/TaskInput/TaskInput.jsx";
 import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
 import Button from "../atoms/Button/Button.jsx";
 
-const NewTaskEntry = (props) => {
-  const { tasks, setTasks, categories } = props;
+const NewTaskEntry = ({ dispatch, categories }) => {
   const [newTask, setNewTask] = useState({
     id: uuidv4(),
     taskName: "",
@@ -44,7 +43,11 @@ const NewTaskEntry = (props) => {
       }, 600);
       return;
     }
-    setTasks([newTask, ...tasks]);
+    dispatch({
+      type: "added",
+      newTask: newTask,
+    });
+
     setNewTask({
       id: uuidv4(),
       taskName: "",

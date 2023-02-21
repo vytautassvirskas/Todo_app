@@ -3,7 +3,6 @@
 .task-wrapper {
   @include flexSpaceBtwn;
   justify-content: flex-start;
-  background-color: $c-bg-todo;
   padding: 1.25rem;
   border-bottom: 0.0625rem solid $c-text-completed;
   cursor: move;
@@ -19,6 +18,7 @@
 .task-title {
   color: $c-text-uncompleted;
   transition: color 0.2s ease-in-out;
+  cursor: text;
   &--completed {
     @extend .task-title;
     color: $c-text-completed;

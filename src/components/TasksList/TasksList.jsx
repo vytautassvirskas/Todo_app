@@ -3,35 +3,35 @@ import Task from "../Task/Task.jsx";
 import style from "./TasksList.module.scss";
 
 const TasksList = (props) => {
-  const { tasks, setTasks, categories, filterStatus, filterCategory } = props;
+  const { tasks, dispatch, categories, filterStatus, filterCategory } = props;
   const [filteredTasks, setFilteredTasks] = useState([...tasks]);
   const [draggingIndex, setDraggingIndex] = useState(null);
   const [overIndex, setOverIndex] = useState(null);
   let wrapperClassName;
 
   const handleDeleteTask = (taskId) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    dispatch({
+      type: "deleted",
+      taskId: taskId,
+    });
   };
   const handleChangeTask = (task) => {
-    setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return task;
-        } else {
-          return t;
-        }
-      })
-    );
+    dispatch({
+      type: "edited",
+      task: task,
+    });
   };
 
   const handleDragStart = (e, taskId) => {
     const draggingIndexOfTasks = tasks.findIndex((t) => t.id === taskId);
+    console.log("draggingIndexOfTasks:", draggingIndexOfTasks);
     setDraggingIndex(draggingIndexOfTasks);
   };
 
   const handleDragOver = (e, taskId) => {
     e.preventDefault();
     const overIndexOfTasks = tasks.findIndex((t) => t.id === taskId);
+    console.log("overIndexOfTasks:", overIndexOfTasks);
     setOverIndex(overIndexOfTasks);
   };
 
@@ -40,7 +40,11 @@ const TasksList = (props) => {
     const newTasks = [...tasks];
     newTasks.splice(draggingIndex, 1);
     newTasks.splice(overIndex, 0, draggedItem);
-    setTasks(newTasks);
+    console.log("newTasks:", newTasks);
+    dispatch({
+      type: "dragged",
+      newTasks: newTasks,
+    });
   };
 
   useEffect(() => {

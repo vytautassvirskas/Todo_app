@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
+import tasksReducer from "./utils/tasksReducer.js";
 import ToDoWrapper from "./components/ToDoWrapper/ToDoWrapper.jsx";
 import TopDashBoard from "./components/TopDashBoard/TopDashBoard.jsx";
 import style from "./App.module.scss";
-import Task from "./components/Task/Task.jsx";
 import NewTaskEntry from "./components/NewTaskEntry/NewTaskEntry.jsx";
 import TasksList from "./components/TasksList/TasksList.jsx";
 import BottomDashBoard from "./components/BottomDashBoard/BottomDashBoard.jsx";
@@ -11,9 +11,12 @@ function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("toDoTheme") || "dark"
   );
-  const [tasks, setTasks] = useState(
+
+  //get initial task from localStorage
+  const [initialTasks, setInitialTasks] = useState(
     () => JSON.parse(localStorage.getItem("tasks")) || []
   );
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
 
@@ -41,21 +44,19 @@ function App() {
           handleToggleTheme={handleToggleTheme}
         ></TopDashBoard>
         <NewTaskEntry
-          tasks={tasks}
-          setTasks={setTasks}
+          dispatch={dispatch}
           categories={categories}
         ></NewTaskEntry>
         <TasksList
           tasks={tasks}
-          setTasks={setTasks}
+          dispatch={dispatch}
           categories={categories}
           filterStatus={filterStatus}
-          setFilterStatus={setFilterStatus}
           filterCategory={filterCategory}
         ></TasksList>
         <BottomDashBoard
           tasks={tasks}
-          setTasks={setTasks}
+          dispatch={dispatch}
           categories={categories}
           filterStatus={filterStatus}
           setFilterStatus={setFilterStatus}
