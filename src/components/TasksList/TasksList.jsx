@@ -24,14 +24,12 @@ const TasksList = (props) => {
 
   const handleDragStart = (e, taskId) => {
     const draggingIndexOfTasks = tasks.findIndex((t) => t.id === taskId);
-    console.log("draggingIndexOfTasks:", draggingIndexOfTasks);
     setDraggingIndex(draggingIndexOfTasks);
   };
 
   const handleDragOver = (e, taskId) => {
     e.preventDefault();
     const overIndexOfTasks = tasks.findIndex((t) => t.id === taskId);
-    console.log("overIndexOfTasks:", overIndexOfTasks);
     setOverIndex(overIndexOfTasks);
   };
 
@@ -40,7 +38,6 @@ const TasksList = (props) => {
     const newTasks = [...tasks];
     newTasks.splice(draggingIndex, 1);
     newTasks.splice(overIndex, 0, draggedItem);
-    console.log("newTasks:", newTasks);
     dispatch({
       type: "dragged",
       newTasks: newTasks,
