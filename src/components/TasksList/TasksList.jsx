@@ -59,9 +59,9 @@ const TasksList = (props) => {
 
   return (
     <div className={wrapperClassName}>
-      <ul>
-        {filteredTasks.length > 0 ? (
-          filteredTasks.map((task, index) => (
+      {filteredTasks.length > 0 ? (
+        <ul>
+          {filteredTasks.map((task, index) => (
             <Task
               key={task.id}
               task={task}
@@ -74,12 +74,11 @@ const TasksList = (props) => {
               onDragOver={(e) => handleDragOver(e, task.id)}
               onDragEnd={handleDragEnd}
             ></Task>
-          ))
-        ) : (
-          <p className={style.empty}>No tasks yet.</p>
-        )}
-        <div className={style.dashboard}></div>
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        <p className={style.empty}>No tasks yet.</p>
+      )}
     </div>
   );
 };
