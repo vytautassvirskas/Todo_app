@@ -7,16 +7,18 @@ import NewTaskEntry from "./components/NewTaskEntry/NewTaskEntry.jsx";
 import TasksList from "./components/TasksList/TasksList.jsx";
 import BottomDashBoard from "./components/BottomDashBoard/BottomDashBoard.jsx";
 
-function App() {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("toDoTheme") || "dark"
-  );
+function getInitialTasks() {
+  const tasks = localStorage.getItem("tasks");
+  return tasks ? JSON.parse(tasks) : [];
+}
 
-  //get initial task from localStorage
-  const [initialTasks, setInitialTasks] = useState(
-    () => JSON.parse(localStorage.getItem("tasks")) || []
-  );
-  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+function getSavedTheme() {
+  return localStorage.getItem("toDoTheme") || "dark";
+}
+
+function App() {
+  const [theme, setTheme] = useState(getSavedTheme);
+  const [tasks, dispatch] = useReducer(tasksReducer, [], getInitialTasks);
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
 
