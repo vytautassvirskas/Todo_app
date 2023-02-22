@@ -17,7 +17,10 @@ const BottomDashBoard = ({
   setFilterCategory,
 }) => {
   const activeTasksAmount = getActiveTasksAmount(tasks);
-
+  const activeTasksDisplay =
+    activeTasksAmount > 0
+      ? activeTasksAmount + " tasks left"
+      : "All tasks completed";
   const handleClearCompleted = () => {
     dispatch({
       type: "cleared",
@@ -77,7 +80,7 @@ const BottomDashBoard = ({
   return (
     <>
       <div className={style.dashboard}>
-        <span className={style.amount}>{activeTasksAmount} items left</span>
+        <span className={style.amount}>{activeTasksDisplay}</span>
         <div className={style["filters-wrapper"]}>{filterButtons}</div>
         <div>
           <Button
