@@ -3,6 +3,10 @@ import style from "./BottomDashBoard.module.scss";
 import Button from "../atoms/Button/Button.jsx";
 import Dropdown from "../atoms/Dropdown/Dropdown.jsx";
 
+function getActiveTasksAmount(tasks) {
+  return tasks.filter((task) => task.status === "active").length;
+}
+
 const BottomDashBoard = ({
   tasks,
   dispatch,
@@ -12,7 +16,8 @@ const BottomDashBoard = ({
   filterCategory,
   setFilterCategory,
 }) => {
-  const taskAmount = tasks.length;
+  const activeTasksAmount = getActiveTasksAmount(tasks);
+
   const handleClearCompleted = () => {
     dispatch({
       type: "cleared",
@@ -66,13 +71,13 @@ const BottomDashBoard = ({
     </>
   );
 
-  if (taskAmount === 0) {
+  if (tasks.length === 0) {
     return null;
   }
   return (
     <>
       <div className={style.dashboard}>
-        <span className={style.amount}>{taskAmount} items left</span>
+        <span className={style.amount}>{activeTasksAmount} items left</span>
         <div className={style["filters-wrapper"]}>{filterButtons}</div>
         <div>
           <Button
